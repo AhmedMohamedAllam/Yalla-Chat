@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fFR-Xc-F5d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B6y-2o-Eew">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--TimeLine-->
         <scene sceneID="zJT-KG-RXz">
             <objects>
-                <viewController id="fFR-Xc-F5d" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gMW-mS-yEU">
+                <viewController id="fFR-Xc-F5d" customClass="TimelineTableViewController" customModule="Yalla_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Es-BJ-pxo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="B1M-T3-X0q"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="TimeLine" id="1vH-cI-NR5"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="TimeLine" id="w89-c3-3t7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="pKe-Fd-WvK"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="7Es-BJ-pxo" id="Qii-Xk-Qvd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AeF-P8-NEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2298.4000000000001" y="-441.22938530734638"/>
+        </scene>
+        <!--TimeLine-->
+        <scene sceneID="d8X-kV-QtW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B6y-2o-Eew" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="TimeLine" image="TimeLine" id="1vH-cI-NR5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8nf-dy-9hb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fFR-Xc-F5d" kind="relationship" relationship="rootViewController" id="2dr-u7-vrs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A42-aA-4oh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1359.2" y="-441.22938530734638"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TimeLine" width="60" height="60"/>
+    </resources>
 </document>

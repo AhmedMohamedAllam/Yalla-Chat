@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "steven-jobs-9354805-2-402.jpg",
       "scale" : "2x"
     },
     {

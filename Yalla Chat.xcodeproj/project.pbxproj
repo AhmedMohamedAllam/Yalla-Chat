@@ -17,6 +17,17 @@
 		F933B5AD2229DB6100C1F4CF /* Pro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5A92229DB6100C1F4CF /* Pro.storyboard */; };
 		F933B5AE2229DB6100C1F4CF /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5AA2229DB6100C1F4CF /* Profile.storyboard */; };
 		F933B5B02229DBED00C1F4CF /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5AF2229DBED00C1F4CF /* SignIn.storyboard */; };
+		F938BA8A222AC47100F31083 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F938BA89222AC47100F31083 /* TimelineCell.xib */; };
+		F9DAFFE1222C6BB80076C198 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE0222C6BB80076C198 /* ChatsViewController.swift */; };
+		F9DAFFE4222C6C390076C198 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE3222C6C390076C198 /* ChatsTableViewCell.swift */; };
+		F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */; };
+		F9DAFFE8222C6C8E0076C198 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE7222C6C8E0076C198 /* ContactsViewController.swift */; };
+		F9DAFFEA222C707A0076C198 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE9222C707A0076C198 /* ChatViewController.swift */; };
+		F9E2D658222C44150078E652 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D657222C44150078E652 /* Extensions.swift */; };
+		F9E2D65C222C48630078E652 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65B222C48630078E652 /* ProfileViewController.swift */; };
+		F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */; };
+		F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */; };
+		F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +43,17 @@
 		F933B5A92229DB6100C1F4CF /* Pro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pro.storyboard; sourceTree = "<group>"; };
 		F933B5AA2229DB6100C1F4CF /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F933B5AF2229DBED00C1F4CF /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		F938BA89222AC47100F31083 /* TimelineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
+		F9DAFFE0222C6BB80076C198 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		F9DAFFE3222C6C390076C198 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		F9DAFFE7222C6C8E0076C198 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		F9DAFFE9222C707A0076C198 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F9E2D657222C44150078E652 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F9E2D65B222C48630078E652 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewControllerCell.swift; sourceTree = "<group>"; };
+		F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +86,15 @@
 		F933B5942229DB0F00C1F4CF /* Yalla Chat */ = {
 			isa = PBXGroup;
 			children = (
+				F9E2D659222C483F0078E652 /* Scenes */,
+				F938BA88222AC44C00F31083 /* xib */,
 				F933B5B12229DC2600C1F4CF /* storyboard */,
 				F933B5952229DB0F00C1F4CF /* AppDelegate.swift */,
 				F933B5972229DB0F00C1F4CF /* ViewController.swift */,
 				F933B59C2229DB1000C1F4CF /* Assets.xcassets */,
 				F933B59E2229DB1000C1F4CF /* LaunchScreen.storyboard */,
 				F933B5A12229DB1000C1F4CF /* Info.plist */,
+				F9E2D657222C44150078E652 /* Extensions.swift */,
 			);
 			path = "Yalla Chat";
 			sourceTree = "<group>";
@@ -85,6 +110,54 @@
 				F933B5992229DB0F00C1F4CF /* Main.storyboard */,
 			);
 			path = storyboard;
+			sourceTree = "<group>";
+		};
+		F938BA88222AC44C00F31083 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				F938BA89222AC47100F31083 /* TimelineCell.xib */,
+			);
+			path = xib;
+			sourceTree = "<group>";
+		};
+		F9DAFFE2222C6BBF0076C198 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				F9DAFFE0222C6BB80076C198 /* ChatsViewController.swift */,
+				F9DAFFE3222C6C390076C198 /* ChatsTableViewCell.swift */,
+				F9DAFFE7222C6C8E0076C198 /* ContactsViewController.swift */,
+				F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */,
+				F9DAFFE9222C707A0076C198 /* ChatViewController.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		F9E2D659222C483F0078E652 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2D65F222C55260078E652 /* Timeline */,
+				F9E2D65A222C48470078E652 /* Profile */,
+				F9DAFFE2222C6BBF0076C198 /* Chats */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F9E2D65A222C48470078E652 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2D65B222C48630078E652 /* ProfileViewController.swift */,
+				F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F9E2D65F222C55260078E652 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */,
+				F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */,
+			);
+			path = Timeline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F938BA8A222AC47100F31083 /* TimelineCell.xib in Resources */,
 				F933B5B02229DBED00C1F4CF /* SignIn.storyboard in Resources */,
 				F933B5A02229DB1000C1F4CF /* LaunchScreen.storyboard in Resources */,
 				F933B5AB2229DB6100C1F4CF /* TimeLine.storyboard in Resources */,
@@ -163,7 +237,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E2D658222C44150078E652 /* Extensions.swift in Sources */,
+				F9DAFFE8222C6C8E0076C198 /* ContactsViewController.swift in Sources */,
+				F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */,
+				F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */,
 				F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */,
+				F9E2D65C222C48630078E652 /* ProfileViewController.swift in Sources */,
+				F9DAFFE4222C6C390076C198 /* ChatsTableViewCell.swift in Sources */,
+				F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */,
+				F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */,
+				F9DAFFE1222C6BB80076C198 /* ChatsViewController.swift in Sources */,
+				F9DAFFEA222C707A0076C198 /* ChatViewController.swift in Sources */,
 				F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
