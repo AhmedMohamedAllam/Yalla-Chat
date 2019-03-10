@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE5BB22D08F95A0E14A27D50 /* Pods_Yalla_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D906960B7AB0DA8C2C02AF1E /* Pods_Yalla_Chat.framework */; };
 		F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B5952229DB0F00C1F4CF /* AppDelegate.swift */; };
 		F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B5972229DB0F00C1F4CF /* ViewController.swift */; };
 		F933B59B2229DB0F00C1F4CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5992229DB0F00C1F4CF /* Main.storyboard */; };
@@ -18,6 +19,14 @@
 		F933B5AE2229DB6100C1F4CF /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5AA2229DB6100C1F4CF /* Profile.storyboard */; };
 		F933B5B02229DBED00C1F4CF /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5AF2229DBED00C1F4CF /* SignIn.storyboard */; };
 		F938BA8A222AC47100F31083 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F938BA89222AC47100F31083 /* TimelineCell.xib */; };
+		F977405522301FB100B95C23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F977405422301FB100B95C23 /* GoogleService-Info.plist */; };
+		F9CE4F402230302B0048A96A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F3F2230302B0048A96A /* SignInViewController.swift */; };
+		F9CE4F432230387E0048A96A /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F422230387E0048A96A /* FirebaseUser.swift */; };
+		F9CE4F4522304E3B0048A96A /* IndicatorLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4422304E3B0048A96A /* IndicatorLoading.swift */; };
+		F9CE4F4722304E460048A96A /* ValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4622304E460048A96A /* ValidationHelper.swift */; };
+		F9CE4F4B2230522A0048A96A /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */; };
+		F9CE4F4E22305B120048A96A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4D22305B120048A96A /* R.generated.swift */; };
+		F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */; };
 		F9DAFFE1222C6BB80076C198 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE0222C6BB80076C198 /* ChatsViewController.swift */; };
 		F9DAFFE4222C6C390076C198 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE3222C6C390076C198 /* ChatsTableViewCell.swift */; };
 		F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */; };
@@ -28,9 +37,22 @@
 		F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */; };
 		F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */; };
 		F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */; };
+		F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2CD223177960008BAA7 /* UserModel.swift */; };
+		F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */; };
+		F9EBF2D522317EE20008BAA7 /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D422317EE20008BAA7 /* NotificationName+Extension.swift */; };
+		F9EBF2D722317FED0008BAA7 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D622317FED0008BAA7 /* Keys.swift */; };
+		F9EBF2D9223185C00008BAA7 /* FirebaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */; };
+		F9EBF2DD2233F0910008BAA7 /* ActionSheetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2DC2233F0910008BAA7 /* ActionSheetPicker.swift */; };
+		F9EBF2DF2234091B0008BAA7 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2DE2234091B0008BAA7 /* FirebaseStorageManager.swift */; };
+		F9EBF2E122340E450008BAA7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E022340E450008BAA7 /* Alert.swift */; };
+		F9EBF2E3223413530008BAA7 /* FirebaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */; };
+		F9EBF2E5223417E80008BAA7 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		471DBD1A8570736312070503 /* Pods-Yalla Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yalla Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		BBA663AE5FEA751438F7B902 /* Pods-Yalla Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yalla Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat.release.xcconfig"; sourceTree = "<group>"; };
+		D906960B7AB0DA8C2C02AF1E /* Pods_Yalla_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yalla_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F933B5922229DB0F00C1F4CF /* Yalla Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yalla Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F933B5952229DB0F00C1F4CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F933B5972229DB0F00C1F4CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +66,14 @@
 		F933B5AA2229DB6100C1F4CF /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F933B5AF2229DBED00C1F4CF /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		F938BA89222AC47100F31083 /* TimelineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
+		F977405422301FB100B95C23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F9CE4F3F2230302B0048A96A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		F9CE4F422230387E0048A96A /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		F9CE4F4422304E3B0048A96A /* IndicatorLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorLoading.swift; sourceTree = "<group>"; };
+		F9CE4F4622304E460048A96A /* ValidationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
+		F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
+		F9CE4F4D22305B120048A96A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "Yalla Chat/Utilitis/R.generated.swift"; sourceTree = SOURCE_ROOT; };
+		F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9DAFFE0222C6BB80076C198 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		F9DAFFE3222C6C390076C198 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
 		F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -54,6 +84,16 @@
 		F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewControllerCell.swift; sourceTree = "<group>"; };
 		F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
+		F9EBF2CD223177960008BAA7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		F9EBF2D422317EE20008BAA7 /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		F9EBF2D622317FED0008BAA7 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRepository.swift; sourceTree = "<group>"; };
+		F9EBF2DC2233F0910008BAA7 /* ActionSheetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetPicker.swift; sourceTree = "<group>"; };
+		F9EBF2DE2234091B0008BAA7 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
+		F9EBF2E022340E450008BAA7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseManager.swift; sourceTree = "<group>"; };
+		F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,17 +101,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5BB22D08F95A0E14A27D50 /* Pods_Yalla_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		868ED1ED9A86D9433D0A535C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				471DBD1A8570736312070503 /* Pods-Yalla Chat.debug.xcconfig */,
+				BBA663AE5FEA751438F7B902 /* Pods-Yalla Chat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9A03D0F90B357E35F62CF966 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D906960B7AB0DA8C2C02AF1E /* Pods_Yalla_Chat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F933B5892229DB0F00C1F4CF = {
 			isa = PBXGroup;
 			children = (
 				F933B5942229DB0F00C1F4CF /* Yalla Chat */,
 				F933B5932229DB0F00C1F4CF /* Products */,
+				868ED1ED9A86D9433D0A535C /* Pods */,
+				9A03D0F90B357E35F62CF966 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +146,8 @@
 		F933B5942229DB0F00C1F4CF /* Yalla Chat */ = {
 			isa = PBXGroup;
 			children = (
+				F9CE4F5122305C980048A96A /* Utilitis */,
+				F9CE4F41223038680048A96A /* Firebase */,
 				F9E2D659222C483F0078E652 /* Scenes */,
 				F938BA88222AC44C00F31083 /* xib */,
 				F933B5B12229DC2600C1F4CF /* storyboard */,
@@ -94,7 +156,7 @@
 				F933B59C2229DB1000C1F4CF /* Assets.xcassets */,
 				F933B59E2229DB1000C1F4CF /* LaunchScreen.storyboard */,
 				F933B5A12229DB1000C1F4CF /* Info.plist */,
-				F9E2D657222C44150078E652 /* Extensions.swift */,
+				F977405422301FB100B95C23 /* GoogleService-Info.plist */,
 			);
 			path = "Yalla Chat";
 			sourceTree = "<group>";
@@ -120,6 +182,45 @@
 			path = xib;
 			sourceTree = "<group>";
 		};
+		F9CE4F3E223030170048A96A /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE4F3F2230302B0048A96A /* SignInViewController.swift */,
+				F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */,
+				F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		F9CE4F41223038680048A96A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F9EBF2D222317DD20008BAA7 /* Models */,
+				F9CE4F422230387E0048A96A /* FirebaseUser.swift */,
+				F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */,
+				F9EBF2D622317FED0008BAA7 /* Keys.swift */,
+				F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */,
+				F9EBF2DE2234091B0008BAA7 /* FirebaseStorageManager.swift */,
+				F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */,
+				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F9CE4F5122305C980048A96A /* Utilitis */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE4F4D22305B120048A96A /* R.generated.swift */,
+				F9CE4F4622304E460048A96A /* ValidationHelper.swift */,
+				F9CE4F4422304E3B0048A96A /* IndicatorLoading.swift */,
+				F9E2D657222C44150078E652 /* Extensions.swift */,
+				F9EBF2D422317EE20008BAA7 /* NotificationName+Extension.swift */,
+				F9EBF2DC2233F0910008BAA7 /* ActionSheetPicker.swift */,
+				F9EBF2E022340E450008BAA7 /* Alert.swift */,
+			);
+			path = Utilitis;
+			sourceTree = "<group>";
+		};
 		F9DAFFE2222C6BBF0076C198 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +236,7 @@
 		F9E2D659222C483F0078E652 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F9CE4F3E223030170048A96A /* SignIn */,
 				F9E2D65F222C55260078E652 /* Timeline */,
 				F9E2D65A222C48470078E652 /* Profile */,
 				F9DAFFE2222C6BBF0076C198 /* Chats */,
@@ -160,6 +262,14 @@
 			path = Timeline;
 			sourceTree = "<group>";
 		};
+		F9EBF2D222317DD20008BAA7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F9EBF2CD223177960008BAA7 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,9 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F933B5A42229DB1000C1F4CF /* Build configuration list for PBXNativeTarget "Yalla Chat" */;
 			buildPhases = (
+				CB69054C6FADBEEB9194A48E /* [CP] Check Pods Manifest.lock */,
+				F9CE4F4C22305AA30048A96A /* ShellScript */,
 				F933B58E2229DB0F00C1F4CF /* Sources */,
 				F933B58F2229DB0F00C1F4CF /* Frameworks */,
 				F933B5902229DB0F00C1F4CF /* Resources */,
+				FEFFD0B588D23A0A0AFE5B7B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,6 +338,7 @@
 				F933B59D2229DB1000C1F4CF /* Assets.xcassets in Resources */,
 				F933B5AC2229DB6100C1F4CF /* Chat.storyboard in Resources */,
 				F933B5AD2229DB6100C1F4CF /* Pro.storyboard in Resources */,
+				F977405522301FB100B95C23 /* GoogleService-Info.plist in Resources */,
 				F933B5AE2229DB6100C1F4CF /* Profile.storyboard in Resources */,
 				F933B59B2229DB0F00C1F4CF /* Main.storyboard in Resources */,
 			);
@@ -232,20 +346,117 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CB69054C6FADBEEB9194A48E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yalla Chat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9CE4F4C22305AA30048A96A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		FEFFD0B588D23A0A0AFE5B7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F933B58E2229DB0F00C1F4CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9CE4F4B2230522A0048A96A /* VerificationCodeViewController.swift in Sources */,
 				F9E2D658222C44150078E652 /* Extensions.swift in Sources */,
 				F9DAFFE8222C6C8E0076C198 /* ContactsViewController.swift in Sources */,
 				F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */,
+				F9EBF2D722317FED0008BAA7 /* Keys.swift in Sources */,
+				F9EBF2DD2233F0910008BAA7 /* ActionSheetPicker.swift in Sources */,
+				F9CE4F432230387E0048A96A /* FirebaseUser.swift in Sources */,
 				F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */,
+				F9EBF2D522317EE20008BAA7 /* NotificationName+Extension.swift in Sources */,
+				F9EBF2E122340E450008BAA7 /* Alert.swift in Sources */,
+				F9EBF2E5223417E80008BAA7 /* UsersRepository.swift in Sources */,
+				F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */,
 				F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */,
+				F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */,
+				F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */,
+				F9CE4F402230302B0048A96A /* SignInViewController.swift in Sources */,
 				F9E2D65C222C48630078E652 /* ProfileViewController.swift in Sources */,
+				F9CE4F4522304E3B0048A96A /* IndicatorLoading.swift in Sources */,
+				F9EBF2E3223413530008BAA7 /* FirebaseDatabaseManager.swift in Sources */,
 				F9DAFFE4222C6C390076C198 /* ChatsTableViewCell.swift in Sources */,
+				F9CE4F4E22305B120048A96A /* R.generated.swift in Sources */,
+				F9EBF2DF2234091B0008BAA7 /* FirebaseStorageManager.swift in Sources */,
 				F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */,
 				F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */,
+				F9CE4F4722304E460048A96A /* ValidationHelper.swift in Sources */,
+				F9EBF2D9223185C00008BAA7 /* FirebaseRepository.swift in Sources */,
 				F9DAFFE1222C6BB80076C198 /* ChatsViewController.swift in Sources */,
 				F9DAFFEA222C707A0076C198 /* ChatViewController.swift in Sources */,
 				F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */,
@@ -392,6 +603,7 @@
 		};
 		F933B5A52229DB1000C1F4CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 471DBD1A8570736312070503 /* Pods-Yalla Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -410,6 +622,7 @@
 		};
 		F933B5A62229DB1000C1F4CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBA663AE5FEA751438F7B902 /* Pods-Yalla Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

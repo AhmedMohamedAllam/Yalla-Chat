@@ -31,6 +31,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewControllerCell", for: indexPath) as! TimelineViewControllerCell
         return cell
     }
-    
-    
 }
