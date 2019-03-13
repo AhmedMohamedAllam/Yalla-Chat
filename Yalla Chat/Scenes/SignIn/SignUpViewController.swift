@@ -78,12 +78,20 @@ class SignUpViewController: UIViewController {
             return
         }
         let userReference = "\(Keys.users)/\(uid)"
-        databaseManager.uploadModel(userData, at: userReference)
-        if !choosedImage{
-            goToHome()
-        }else{
-            uploadPicture()
-        }
+        databaseManager.uploadModel(userData, at: userReference){ [weak self] error in
+            guard let self = self else {return}
+            guard error == nil else{
+                 Alert.showMessage(message: "Error saving data!, \(error!.localizedDescription)", theme: .error)
+                return
+            }
+            if !self.choosedImage{
+                self.goToHome()
+            }else{
+                self.profileProgressBar.isHidden = false
+                self.uploadPicture()
+            }
+         }
+        
     }
     
     func goToHome(){
@@ -98,6 +106,7 @@ class SignUpViewController: UIViewController {
         userData[Keys.User.email] = emailTextField.textOrNil
         userData[Keys.User.mobile] = userFirebase.phoneNumber
         setUserType()
+        AppSettings.displayName = fullNameTextField.text
     }
     
     private func setUserType(){
@@ -175,7 +184,6 @@ extension SignUpViewController: UINavigationControllerDelegate, UIImagePickerCon
 extension SignUpViewController: FirebaseStorageManagerDelegate{
     func profilePictureUploadProgress(_ progress: Double) {
         DispatchQueue.main.async {
-            self.profileProgressBar.isHidden = false
             self.profileProgressBar.progress = Float(progress)
         }
     }

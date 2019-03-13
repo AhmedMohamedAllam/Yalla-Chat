@@ -19,18 +19,14 @@ struct UserModel: FirebaseModel {
     var gender: String!
     var type: UserType!
     
-    private var userType: Int!{
-        didSet{
-            type = UserType(rawValue: userType)
-        }
-    }
+    private var userType: Int!
     
     static var keyPath: String{
         return Keys.users
     }
     
     static var notification: Notification.Name? {
-        return .recieveUser
+        return .receiveUser
     }
     
     
@@ -44,6 +40,7 @@ struct UserModel: FirebaseModel {
         self.fullName = fullName
         self.mobileNumber = mobile
         self.userType = type
+        self.type = UserType(rawValue: userType)
         self.imageUrl = dict[Keys.User.imageUrl] as? String
         self.email = dict[Keys.User.email] as? String
         self.bio = dict[Keys.User.bio] as? String

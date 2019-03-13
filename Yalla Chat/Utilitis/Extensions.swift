@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageKit
 
 extension UITextField{
     
@@ -18,6 +19,37 @@ extension UITextField{
         return self.text == "" || self.text == nil
     }
 }
+
+extension UIImageView{
+    func setImage(with url: String) {
+        guard !url.isEmpty, let _ = URL(string: url) else { return }
+        cacheImage(from: url) { (image, key) in
+            if url == key {
+                self.image = image
+            }
+        }
+    }
+}
+
+extension UIImage: MediaItem {
+    public var url: URL? { return nil }
+    public var image: UIImage? { return self }
+    public var placeholderImage: UIImage { return self }
+    public var size: CGSize { return  CGSize.zero }
+}
+
+extension UIViewController{
+    func makeRootAndPresent() {
+        guard let window = UIApplication.shared.delegate!.window! else { return }
+        guard let rootViewController = window.rootViewController else { return }
+        self.view.frame = rootViewController.view.frame
+        self.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = self
+        }, completion: { _ in })
+    }
+}
+
 extension UINavigationController{
     func makeTransparent() {
         navigationBar.isHidden = false
@@ -26,6 +58,20 @@ extension UINavigationController{
         navigationBar.isTranslucent = true
         view.backgroundColor = .clear
     }
+    
+    func messageKitStyle(){
+        navigationBar.tintColor = .primary
+        navigationBar.prefersLargeTitles = true
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.primary]
+        navigationBar.largeTitleTextAttributes = navigationBar.titleTextAttributes
+        
+        toolbar.tintColor = .primary
+        
+        
+    }
+    
+    
+    
 }
 
 extension UIView{

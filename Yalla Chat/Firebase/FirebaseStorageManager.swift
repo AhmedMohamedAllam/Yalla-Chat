@@ -20,7 +20,7 @@ class FirebaseStorageManager {
     func uploadProfilePic(_ image: UIImage,for key: String, completion: @escaping (_ error: Error?) -> Void){
         let profileImageRef = ref.child(Keys.profilePictures).child(key)
         let uploadTask: StorageUploadTask!
-        if let uploadData = image.pngData() {
+        if let uploadData = image.jpegData(compressionQuality: 0.25) {
             uploadTask = profileImageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     completion(error)
@@ -30,7 +30,7 @@ class FirebaseStorageManager {
             }
             
             uploadTask.observe(.progress) { snapshot in
-                let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
+                let percentComplete = Double(snapshot.progress!.completedUnitCount)
                     / Double(snapshot.progress!.totalUnitCount)
                 self.delegate?.profilePictureUploadProgress(percentComplete)
             }
@@ -38,6 +38,9 @@ class FirebaseStorageManager {
     }
     
     
-    
+    func profilePicUrl(for key: String, completion: @escaping (_ url: URL?, _ error: Error?) -> Void){
+         let profileImageRef = ref.child(Keys.profilePictures).child(key)
+        profileImageRef.downloadURL(completion: completion)
+    }
     
 }

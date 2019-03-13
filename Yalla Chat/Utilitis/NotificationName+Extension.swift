@@ -9,5 +9,5 @@
 import Foundation
 
 extension Notification.Name{
-    static let recieveUser = Notification.Name("receiveUser")
+    static let receiveUser = Notification.Name("receiveUser")
 }

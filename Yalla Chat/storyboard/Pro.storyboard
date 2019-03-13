@@ -28,6 +28,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pro" width="16" height="16"/>
+        <image name="pro" width="61" height="30"/>
     </resources>
 </document>
