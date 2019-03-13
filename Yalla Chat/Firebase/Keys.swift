@@ -11,7 +11,7 @@ import Foundation
 struct Keys {
     static let users = "users"
     static let profilePictures = "profilePictures"
-    
+
     struct User {
         static let fullName = "fullName"
         static let email = "email"
@@ -20,5 +20,15 @@ struct Keys {
         static let bio = "bio"
         static let gender = "gender"
         static let type = "type"
+    }
+    
+    struct Chat {
+        static let channels = "channels"
+
+        struct Channel {
+            static let name = "name"
+            static let lastMessage = "lastMessage"
+        }
+
     }
 }
