@@ -39,6 +39,9 @@ class ChannelsViewController: UITableViewController {
         return label
     }()
     
+    private let channelRepository = ChannelsRepository.shared
+    private let userRepository = UsersRepository()
+    
     private let channelCellIdentifier = "ChannelsTableViewCell"
     private var currentChannelAlertController: UIAlertController?
     
@@ -48,30 +51,42 @@ class ChannelsViewController: UITableViewController {
         return db.collection(Keys.Chat.channels)
     }
     private var channels = [Channel]()
-    private var channelListener: ListenerRegistration?
+    private var channelListeners: [ListenerRegistration] = []
     
     private var currentUser = FirebaseUser.shared.currentUser!
     
     deinit {
-        channelListener?.remove()
+        NotificationCenter.default.removeObserver(self)
+        channelListeners.forEach{
+            $0.remove()
+        }
     }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         clearsSelectionOnViewWillAppear = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
-       
         toolbarLabel.text = AppSettings.displayName
-        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        IndicatorLoading.showLoading(view)
+        userRepository.user(with: currentUser.uid){ myData in
+            self.channelRepository.channels(from: myData) { (channels) in
+                self.channels = channels ?? []
+                DispatchQueue.main.async {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    self.tableView.reloadData()
+                    IndicatorLoading.hideLoading(self.view)
+                }
             }
-            
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(channelAdded(_:)), name: NSNotification.Name.channelAdded, object: nil)
+    }
+    
+    @objc func channelAdded( _ notification: Notification){
+        if let channel = notification.object as? Channel{
+            self.addChannelToTable(channel)
         }
     }
     
@@ -99,34 +114,11 @@ class ChannelsViewController: UITableViewController {
     
     // MARK: - Helpers
     
-    
-    private func createChannel(to user: UserModel) {
-        guard let id = user.id else {
-            return
-        }
-        
-        guard let channelName = user.fullName else {
-            return
-        }
-        
-        let existChannel = channels.filter{$0.id == id}.first
-        guard existChannel == nil else {
-            didSelect(channel: existChannel!)
-            return
-        }
-        
-        let channel = Channel(id: id, name: channelName)
-        channelReference.document(id).setData(channel.representation) { [weak self] error in
-            if let e = error {
-                print("Error saving channel: \(e.localizedDescription)")
-            }else{
-                self?.didSelect(channel: channel)
-            }
-        }
-    }
+   
     
     private func addChannelToTable(_ channel: Channel) {
         guard !channels.contains(channel) else {
+            updateChannelInTable(channel)
             return
         }
         
@@ -155,23 +147,6 @@ class ChannelsViewController: UITableViewController {
         
         channels.remove(at: index)
         tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-    }
-    
-    private func handleDocumentChange(_ change: DocumentChange) {
-        guard let channel = Channel(document: change.document) else {
-            return
-        }
-        
-        switch change.type {
-        case .added:
-            addChannelToTable(channel)
-            
-        case .modified:
-            updateChannelInTable(channel)
-            
-        case .removed:
-            removeChannelFromTable(channel)
-        }
     }
     
 }
@@ -207,6 +182,12 @@ extension ChannelsViewController {
 
 extension ChannelsViewController: ContactsViewControllerDelegate{
     func didSelect(user: UserModel) {
-        createChannel(to: user)
+//        createChannel(to: user)
+        IndicatorLoading.showLoading(self.view)
+        channelRepository.createChannel(to: user) { (channel) in
+            IndicatorLoading.hideLoading(self.view)
+            guard let createdChannel = channel else {return}
+            self.didSelect(channel: createdChannel)
+        }
     }
 }

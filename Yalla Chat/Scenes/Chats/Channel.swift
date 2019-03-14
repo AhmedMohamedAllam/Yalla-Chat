@@ -31,25 +31,40 @@ import FirebaseFirestore
 struct Channel {
     
     let id: String
-    let name: String
+    let senderId: String
+    let receiverId: String
     var lastMessage: String = ""
+    var creationDate: Date
     
-    init(id: String, name: String) {
-        self.id = id
-        self.name = name
+    var destinationUid: String{
+        let myUid = FirebaseUser.shared.uid!
+        return senderId == myUid ? receiverId : senderId
     }
     
-    init?(document: QueryDocumentSnapshot) {
-        let data = document.data()
-        
-        guard let name = data[Keys.Chat.Channel.name] as? String else {
+    init(id: String, sender: String, receiver: String) {
+        self.id = id
+        self.senderId = sender
+        self.receiverId = receiver
+        self.creationDate = Date()
+    }
+    
+    init?(document: DocumentSnapshot) {
+        guard let data = document.data() else {
             return nil
         }
-        
-        let lastMessage = data[Keys.Chat.Channel.lastMessage] as? String ?? ""
         id = document.documentID
-        self.name = name
-        self.lastMessage = lastMessage
+
+        if let lastMessage = data[Keys.Chat.Channel.lastMessage] as? String {
+            self.lastMessage = lastMessage
+        }
+        
+        let timeStamp = data[Keys.Chat.Channel.date] as! Timestamp
+        let sender = data[Keys.Chat.Channel.sender] as! String
+        let receiver = data[Keys.Chat.Channel.receiver] as! String
+        
+        self.creationDate = timeStamp.dateValue()
+        self.senderId = sender
+        self.receiverId = receiver
     }
     
 }
@@ -57,10 +72,12 @@ struct Channel {
 extension Channel: DatabaseRepresentation {
     
     var representation: [String : Any] {
-        let rep = [
+        let rep: [String: Any] = [
             "id": id,
-            "name": name,
-            Keys.Chat.Channel.lastMessage: lastMessage]
+            Keys.Chat.Channel.date: creationDate,
+            Keys.Chat.Channel.lastMessage: lastMessage,
+            Keys.Chat.Channel.sender: senderId,
+            Keys.Chat.Channel.receiver: receiverId]
         
         return rep
     }
@@ -74,7 +91,7 @@ extension Channel: Comparable {
     }
     
     static func < (lhs: Channel, rhs: Channel) -> Bool {
-        return lhs.name < rhs.name
+        return lhs.creationDate < rhs.creationDate
     }
     
 }

@@ -20,14 +20,18 @@ struct Keys {
         static let bio = "bio"
         static let gender = "gender"
         static let type = "type"
+        static let channels = "channels"
+
     }
     
     struct Chat {
         static let channels = "channels"
 
         struct Channel {
-            static let name = "name"
+            static let date = "date"
             static let lastMessage = "lastMessage"
+            static let sender = "sender"
+            static let receiver = "receiver"
         }
 
     }

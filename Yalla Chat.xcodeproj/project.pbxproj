@@ -226,6 +226,7 @@
 		F98DCCA122355F7400071224 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				F9F223932237E83600EE1605 /* ChannelsRepository.swift */,
 				F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */,
 				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
 			);
@@ -252,7 +253,6 @@
 				F9EBF2D622317FED0008BAA7 /* Keys.swift */,
 				F9EBF2DE2234091B0008BAA7 /* FirebaseStorageManager.swift */,
 				F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */,
-				F9F223932237E83600EE1605 /* ChannelsRepository.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";

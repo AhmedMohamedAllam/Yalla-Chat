@@ -10,4 +10,5 @@ import Foundation
 
 extension Notification.Name{
     static let receiveUser = Notification.Name("receiveUser")
+    static let channelAdded = Notification.Name("channelAdded")
 }

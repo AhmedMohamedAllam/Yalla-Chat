@@ -18,6 +18,7 @@ struct UserModel: FirebaseModel {
     var bio: String?
     var gender: String!
     var type: UserType!
+    var channels: [String]?
     
     private var userType: Int!
     
@@ -45,6 +46,9 @@ struct UserModel: FirebaseModel {
         self.email = dict[Keys.User.email] as? String
         self.bio = dict[Keys.User.bio] as? String
         self.gender = dict[Keys.User.gender] as? String
+        if let channelsDict = dict[Keys.User.channels] as? [String: String]{
+            self.channels = Array(channelsDict.values)
+        }
     }
     
 }

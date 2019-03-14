@@ -49,13 +49,19 @@ final class ChatViewController: MessagesViewController {
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
     private var lastMessageRef: DocumentReference?
-
+    private let usersRepository = UsersRepository()
     
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
     private let user: User
     private let channel: Channel
+    
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
     
     deinit {
         messageListener?.remove()
@@ -71,7 +77,9 @@ final class ChatViewController: MessagesViewController {
 //        } else {
 //            self.messagesCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 10)
 //        }
-        title = channel.name
+        usersRepository.user(with: channel.destinationUid) { (user) in
+            self.title = user.fullName
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -95,8 +103,8 @@ final class ChatViewController: MessagesViewController {
         
      navigationController?.messageKitStyle()
 
-        reference = db.collection([user.uid, channel.id, "thread"].joined(separator: "/"))
-        lastMessageRef = db.collection(user.uid).document(channel.id)
+        reference = db.collection([Keys.Chat.channels, channel.id, "thread"].joined(separator: "/"))
+        lastMessageRef = db.collection(Keys.Chat.channels).document(channel.id)
 
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -133,6 +141,11 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
         messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false) // 3
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
+            layout.textMessageSizeCalculator.incomingAvatarSize = .zero
+        }
+        
     }
     
     // MARK: - Actions
@@ -271,18 +284,19 @@ final class ChatViewController: MessagesViewController {
 
 extension ChatViewController: MessagesDisplayDelegate {
     
+    
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .primary : .incomingMessage
     }
     
-    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
-        return false
-    }
+//    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
+//        return false
+//    }
     
-    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
-    }
+//    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+//        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+//        return .bubbleTail(corner, .curved)
+//    }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
@@ -303,7 +317,6 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        
         return 0
     }
     
@@ -312,6 +325,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 // MARK: - MessagesDataSource
 
 extension ChatViewController: MessagesDataSource {
+    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
          return messages.count
     }
@@ -329,14 +343,21 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if indexPath.section % 3 == 0 {
+            return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        }
+        return nil
+    }
+    
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let name = message.sender.displayName
-        return NSAttributedString(
-            string: name,
-            attributes: [
-                .font: UIFont.preferredFont(forTextStyle: .caption1),
-                .foregroundColor: UIColor(white: 0.3, alpha: 1)
-            ]
-        )
+        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    }
+    
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
+        let dateString = formatter.string(from: message.sentDate)
+        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
     }
     
 }

@@ -15,7 +15,8 @@ class ChannelsTableViewCell: UITableViewCell {
     @IBOutlet weak var lastMessageLabel: UILabel!
     
     private let storage = FirebaseStorageManager()
-
+    private let usersRepository = UsersRepository()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,9 +29,12 @@ class ChannelsTableViewCell: UITableViewCell {
     }
     
     func updateCell(channel: Channel) {
-        userNameLabel.text = channel.name
+        usersRepository.user(with: channel.destinationUid) {[weak self] (user) in
+            self?.userNameLabel.text = user.fullName
+        }
+
         lastMessageLabel.text = channel.lastMessage
-        updateProfilePic(with: channel.id ?? "")
+        updateProfilePic(with: channel.id)
     }
 
  
