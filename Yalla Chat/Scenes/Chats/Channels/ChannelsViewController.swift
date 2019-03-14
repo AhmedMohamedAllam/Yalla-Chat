@@ -76,9 +76,9 @@ class ChannelsViewController: UITableViewController {
                 self.channels = channels ?? []
                 DispatchQueue.main.async {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    self.tableView.reloadData()
                     IndicatorLoading.hideLoading(self.view)
                 }
+                
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(channelAdded(_:)), name: NSNotification.Name.channelAdded, object: nil)

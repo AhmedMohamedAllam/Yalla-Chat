@@ -90,9 +90,10 @@ final class ChatViewController: MessagesViewController {
         super.viewWillDisappear(animated)
         if messages.count > 0 {
             let lastMessageText = messages[messages.count - 1].content
-            
+            let lastMessageDate = messages[messages.count - 1].sentDate
             lastMessageRef?.updateData(
-                [Keys.Chat.Channel.lastMessage : lastMessageText]
+                [Keys.Chat.Channel.lastMessage : lastMessageText,
+                Keys.Chat.Channel.date : lastMessageDate]
             )
         }
         
