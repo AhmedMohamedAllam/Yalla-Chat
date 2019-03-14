@@ -66,7 +66,7 @@
                                             <action selector="signInPressed:" destination="ZON-qj-rMD" eventType="touchUpInside" id="Ndx-44-UGO"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+966" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekW-Je-W6R">
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+966" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekW-Je-W6R">
                                         <rect key="frame" x="0.0" y="0.0" width="57" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GKH-9I-hAE"/>
