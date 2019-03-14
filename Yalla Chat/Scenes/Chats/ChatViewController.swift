@@ -91,6 +91,7 @@ final class ChatViewController: MessagesViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         saveLastMessage()
+        setNewMessageFlag(channelRef: senderLastMessageRef, hasNewMessage: false)
     }
     
     override func viewDidLoad() {
