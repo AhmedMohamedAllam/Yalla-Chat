@@ -35,6 +35,7 @@ struct Channel {
     let receiverId: String
     var lastMessage: String = ""
     var creationDate: Date
+    var hasNewMessage: Bool = false
     
     var destinationUid: String{
         let myUid = FirebaseUser.shared.uid!
@@ -61,10 +62,11 @@ struct Channel {
         let timeStamp = data[Keys.Chat.Channel.date] as! Timestamp
         let sender = data[Keys.Chat.Channel.sender] as! String
         let receiver = data[Keys.Chat.Channel.receiver] as! String
-        
+        let hasNewMessage = data[Keys.Chat.Channel.hasNewMessage] as! Bool
         self.creationDate = timeStamp.dateValue()
         self.senderId = sender
         self.receiverId = receiver
+        self.hasNewMessage = hasNewMessage
     }
     
 }
@@ -77,7 +79,9 @@ extension Channel: DatabaseRepresentation {
             Keys.Chat.Channel.date: creationDate,
             Keys.Chat.Channel.lastMessage: lastMessage,
             Keys.Chat.Channel.sender: senderId,
-            Keys.Chat.Channel.receiver: receiverId]
+            Keys.Chat.Channel.receiver: receiverId,
+            Keys.Chat.Channel.hasNewMessage: hasNewMessage
+        ]
         
         return rep
     }

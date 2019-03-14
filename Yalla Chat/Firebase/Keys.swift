@@ -32,6 +32,7 @@ struct Keys {
             static let lastMessage = "lastMessage"
             static let sender = "sender"
             static let receiver = "receiver"
+            static let hasNewMessage = "hasNewMessage"
         }
 
     }

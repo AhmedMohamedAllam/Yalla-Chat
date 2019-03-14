@@ -48,7 +48,8 @@ final class ChatViewController: MessagesViewController {
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private var lastMessageRef: DocumentReference?
+    private var senderLastMessageRef: DocumentReference!
+    private var receiverLastMessageRef: DocumentReference!
     private let usersRepository = UsersRepository()
     
     private var messages: [Message] = []
@@ -71,15 +72,16 @@ final class ChatViewController: MessagesViewController {
         self.user = user
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
-//
-//        if #available(iOS 11.0, *) {
-//            self.messagesCollectionView.contentInset = UIEdgeInsets(top: 59, left: 0, bottom: 0, right: 10)
-//        } else {
-//            self.messagesCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 10)
-//        }
         usersRepository.user(with: channel.destinationUid) { (user) in
             self.title = user.fullName
         }
+        senderLastMessageRef = db.collection(FirebaseUser.shared.uid!).document(channel.id)
+        receiverLastMessageRef = db.collection(channel.destinationUid).document(channel.id)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNewMessageFlag(channelRef: senderLastMessageRef, hasNewMessage: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,25 +90,14 @@ final class ChatViewController: MessagesViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if messages.count > 0 {
-            let lastMessageText = messages[messages.count - 1].content
-            let lastMessageDate = messages[messages.count - 1].sentDate
-            lastMessageRef?.updateData(
-                [Keys.Chat.Channel.lastMessage : lastMessageText,
-                Keys.Chat.Channel.date : lastMessageDate]
-            )
-        }
-        
+        saveLastMessage()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     navigationController?.messageKitStyle()
-
+        navigationController?.messageKitStyle()
         reference = db.collection([Keys.Chat.channels, channel.id, "thread"].joined(separator: "/"))
-        lastMessageRef = db.collection(Keys.Chat.channels).document(channel.id)
-
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -151,6 +142,28 @@ final class ChatViewController: MessagesViewController {
     
     // MARK: - Actions
     
+    private func setNewMessageFlag(channelRef: DocumentReference, hasNewMessage: Bool){
+        channelRef.updateData(
+            [Keys.Chat.Channel.hasNewMessage : hasNewMessage]
+        )
+    }
+    
+    private func saveLastMessage(){
+        
+        if messages.count > 0 {
+            let lastMessageText = messages[messages.count - 1].content
+            let lastMessageDate = messages[messages.count - 1].sentDate
+            senderLastMessageRef.updateData(
+                [Keys.Chat.Channel.lastMessage : lastMessageText,
+                 Keys.Chat.Channel.date : lastMessageDate]
+            )
+            receiverLastMessageRef.updateData(
+                [Keys.Chat.Channel.lastMessage : lastMessageText,
+                 Keys.Chat.Channel.date : lastMessageDate]
+            )
+        }
+    }
+    
     @objc private func cameraButtonPressed() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -169,12 +182,13 @@ final class ChatViewController: MessagesViewController {
     private func save(_ message: Message) {
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
-                print("Error sending message: \(e.localizedDescription)")
+                Alert.showMessage(message: "Error sending message: \(e.localizedDescription)", theme: .error)
                 return
             }
-            
+            self.saveLastMessage()
             self.messagesCollectionView.scrollToBottom()
         }
+        
     }
     
     private func insertNewMessage(_ message: Message) {
@@ -290,9 +304,9 @@ extension ChatViewController: MessagesDisplayDelegate {
         return isFromCurrentSender(message: message) ? .primary : .incomingMessage
     }
     
-//    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
-//        return false
-//    }
+    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
+        return false
+    }
     
 //    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
 //        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
@@ -369,8 +383,9 @@ extension ChatViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let message = Message(user: user, content: text)
-        
+        setNewMessageFlag(channelRef: receiverLastMessageRef, hasNewMessage: true)
         save(message)
+        setNewMessageFlag(channelRef: receiverLastMessageRef, hasNewMessage: true)
         inputBar.inputTextView.text = ""
         inputBar.inputTextView.resignFirstResponder()
     }

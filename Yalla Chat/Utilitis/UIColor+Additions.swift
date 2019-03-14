@@ -38,4 +38,7 @@ extension UIColor {
     return UIColor(red: 230 / 255, green: 230 / 255, blue: 230 / 255, alpha: 1)
   }
   
+    static var hasNewMessage: UIColor {
+        return UIColor(red: 31 / 255, green: 137 / 255, blue: 255 / 255, alpha: 1)
+    }
 }

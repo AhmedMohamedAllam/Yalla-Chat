@@ -139,6 +139,20 @@
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNK-Ts-DeI">
+                                            <rect key="frame" x="321" y="29" width="12" height="12"/>
+                                            <color key="backgroundColor" red="0.1221123964880822" green="0.5391695205479452" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="12" id="9ac-Uk-cCD"/>
+                                                <constraint firstAttribute="height" constant="12" id="HBl-i2-7Cg"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="circlePaddingsView" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ogQ-z4-2Dg" firstAttribute="top" secondItem="qcK-Dg-820" secondAttribute="top" multiplier="2" id="1dj-KP-2Od"/>
@@ -147,12 +161,15 @@
                                         <constraint firstItem="wfq-1k-M6s" firstAttribute="bottom" secondItem="qcK-Dg-820" secondAttribute="bottom" multiplier="0.8" id="c5M-hJ-BHN"/>
                                         <constraint firstItem="qcK-Dg-820" firstAttribute="top" secondItem="wwC-S4-lNR" secondAttribute="top" constant="8" id="cJ5-sI-AbC"/>
                                         <constraint firstAttribute="bottom" secondItem="qcK-Dg-820" secondAttribute="bottom" constant="8" id="fIt-DB-mr7"/>
+                                        <constraint firstItem="HNK-Ts-DeI" firstAttribute="centerY" secondItem="wwC-S4-lNR" secondAttribute="centerY" id="neQ-8K-PDt"/>
+                                        <constraint firstAttribute="trailing" secondItem="HNK-Ts-DeI" secondAttribute="trailing" constant="8" id="wyl-qs-1sm"/>
                                         <constraint firstItem="ogQ-z4-2Dg" firstAttribute="leading" secondItem="qcK-Dg-820" secondAttribute="trailing" constant="12" id="xHq-2O-OzM"/>
                                         <constraint firstItem="qcK-Dg-820" firstAttribute="leading" secondItem="wwC-S4-lNR" secondAttribute="leading" constant="8" id="yOb-fP-unr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lastMessageLabel" destination="wfq-1k-M6s" id="rGl-QS-ChB"/>
+                                    <outlet property="newMessageView" destination="HNK-Ts-DeI" id="814-lK-jqB"/>
                                     <outlet property="profilePic" destination="qcK-Dg-820" id="Ifu-IN-eLX"/>
                                     <outlet property="userNameLabel" destination="ogQ-z4-2Dg" id="edg-jZ-Ed5"/>
                                 </connections>

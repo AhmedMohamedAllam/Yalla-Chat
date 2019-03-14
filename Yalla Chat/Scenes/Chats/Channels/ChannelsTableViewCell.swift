@@ -13,6 +13,7 @@ class ChannelsTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
+    @IBOutlet weak var newMessageView: UIView!
     
     private let storage = FirebaseStorageManager()
     private let usersRepository = UsersRepository()
@@ -32,12 +33,17 @@ class ChannelsTableViewCell: UITableViewCell {
         usersRepository.user(with: channel.destinationUid) {[weak self] (user) in
             self?.userNameLabel.text = user.fullName
         }
-
+        updateCellState(hasNewMessage: channel.hasNewMessage)
         lastMessageLabel.text = channel.lastMessage
         updateProfilePic(with: channel.id)
     }
 
  
+    private func updateCellState(hasNewMessage: Bool){
+        userNameLabel.textColor = hasNewMessage ? UIColor.hasNewMessage : UIColor.black
+        lastMessageLabel.textColor = hasNewMessage ? UIColor.black : UIColor.gray
+        newMessageView.isHidden = !hasNewMessage
+    }
     
     private func updateProfilePic(with uid: String){
         storage.profilePicUrl(for: uid) { (url, error) in
