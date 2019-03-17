@@ -10,8 +10,6 @@ import UIKit
 
 class TimelineViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +18,7 @@ class TimelineViewController: UIViewController {
         tableView.register(UINib(nibName: "TimelineCell", bundle: nil), forCellReuseIdentifier: "TimelineViewControllerCell")
         tableView.reloadData()
     }
-
-
+    
 }
 
 extension TimelineViewController: UITableViewDelegate, UITableViewDataSource{

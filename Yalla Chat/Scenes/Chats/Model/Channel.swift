@@ -59,7 +59,9 @@ struct Channel {
             self.lastMessage = lastMessage
         }
         
-        let timeStamp = data[Keys.Chat.Channel.date] as! Timestamp
+        guard let timeStamp = data[Keys.Chat.Channel.date] as? Timestamp else{
+            return nil
+        }
         let sender = data[Keys.Chat.Channel.sender] as! String
         let receiver = data[Keys.Chat.Channel.receiver] as! String
         let hasNewMessage = data[Keys.Chat.Channel.hasNewMessage] as! Bool

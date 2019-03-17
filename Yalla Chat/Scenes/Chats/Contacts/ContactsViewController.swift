@@ -24,10 +24,12 @@ class ContactsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         users = usersRepo.personalUsers() ?? []
+        IndicatorLoading.showLoading(view)
         NotificationCenter.default.addObserver(self, selector: #selector(self.receiveUsers), name: NSNotification.Name.receiveUser, object: nil)
     }
     
     @objc func receiveUsers(){
+        IndicatorLoading.hideLoading(view)
         users = usersRepo.personalUsers() ?? []
         tableView.reloadData()
     }

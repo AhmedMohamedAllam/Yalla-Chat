@@ -8,13 +8,14 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 
 class FirebaseUser {
     static var shared = FirebaseUser()
     
+
     private init() {
-        
     }
     
     var uid: String?{
@@ -92,8 +93,14 @@ class FirebaseUser {
                 completionHandler(nil, "Something went wrong, please try again!")
                 return
             }
+            self.addUserJoinDate(uid: authResult!.user.uid)
             completionHandler(authResult!, nil)
         }
+    }
+    
+    private func addUserJoinDate(uid: String){
+        let channelReference =  Firestore.firestore().collection(uid)
+        channelReference.addDocument(data: ["joinDate": Date()])
     }
     
    private func getPhoneCredential(verificationCode code: String) -> PhoneAuthCredential?{

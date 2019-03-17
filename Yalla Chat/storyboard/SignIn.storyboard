@@ -29,10 +29,10 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Td-q9-BcU">
-                                <rect key="frame" x="34.5" y="381" width="306.5" height="138.5"/>
+                                <rect key="frame" x="63" y="381" width="249.5" height="138.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sign In with your KSA number" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5RI-rS-NRo">
-                                        <rect key="frame" x="59" y="0.0" width="239.5" height="44"/>
+                                        <rect key="frame" x="2" y="0.0" width="239.5" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="f46-4d-fix"/>
                                         </constraints>
@@ -46,13 +46,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activation code will be sent to your mobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Obn-zW-JbR">
-                                        <rect key="frame" x="33.5" y="56" width="239" height="14.5"/>
+                                        <rect key="frame" x="5" y="56" width="239" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSS-kg-l6U">
-                                        <rect key="frame" x="78" y="94.5" width="150" height="44"/>
+                                        <rect key="frame" x="49.5" y="94.5" width="150" height="44"/>
                                         <color key="backgroundColor" red="0.65930020810000001" green="0.73513251540000002" blue="0.32146096229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,10 +66,11 @@
                                             <action selector="signInPressed:" destination="ZON-qj-rMD" eventType="touchUpInside" id="Ndx-44-UGO"/>
                                         </connections>
                                     </button>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+966" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekW-Je-W6R">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="44"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+966" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekW-Je-W6R">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GKH-9I-hAE"/>
+                                            <constraint firstAttribute="width" id="SPF-SC-c32"/>
                                         </constraints>
                                         <color key="textColor" red="0.37187558409999999" green="0.4769204259" blue="0.67845833300000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -60,6 +60,7 @@ class SignUpViewController: UIViewController {
         if !isEmpty{
             completeUserData()
             uploadUser()
+            
         }
     }
     

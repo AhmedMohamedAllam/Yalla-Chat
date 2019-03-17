@@ -21,7 +21,16 @@ struct Keys {
         static let gender = "gender"
         static let type = "type"
         static let channels = "channels"
-
+        
+    }
+    
+    struct Post {
+        static let text = "text"
+        static let sender = "sender"
+        static let creationDate = "creationDate"
+        static let imageUrl = "imageUrl"
+        static let likes = "likes"
+        static let comments = "comments"
     }
     
     struct Chat {

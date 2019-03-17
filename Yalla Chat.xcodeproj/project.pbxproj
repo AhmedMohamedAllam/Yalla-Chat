@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE5BB22D08F95A0E14A27D50 /* Pods_Yalla_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D906960B7AB0DA8C2C02AF1E /* Pods_Yalla_Chat.framework */; };
+		F9325339223D412000CE88AB /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9325338223D412000CE88AB /* NewPostViewController.swift */; };
+		F932533B223ED24700CE88AB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932533A223ED24700CE88AB /* Post.swift */; };
+		F932533D223EDBFD00CE88AB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932533C223EDBFD00CE88AB /* Comment.swift */; };
 		F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B5952229DB0F00C1F4CF /* AppDelegate.swift */; };
 		F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B5972229DB0F00C1F4CF /* ViewController.swift */; };
 		F933B59B2229DB0F00C1F4CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B5992229DB0F00C1F4CF /* Main.storyboard */; };
@@ -47,7 +50,7 @@
 		F9E2D65C222C48630078E652 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65B222C48630078E652 /* ProfileViewController.swift */; };
 		F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */; };
 		F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */; };
-		F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */; };
+		F9E2D663222C5F590078E652 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D662222C5F590078E652 /* TimelineViewController.swift */; };
 		F9E93FE922356DFC00B5A44B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E93FE822356DFC00B5A44B /* ImageCache.swift */; };
 		F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2CD223177960008BAA7 /* UserModel.swift */; };
 		F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */; };
@@ -60,13 +63,15 @@
 		F9EBF2E3223413530008BAA7 /* FirebaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */; };
 		F9EBF2E5223417E80008BAA7 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */; };
 		F9F223922237CB8C00EE1605 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F223912237CB8C00EE1605 /* AppController.swift */; };
-		F9F223942237E83600EE1605 /* ChannelsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F223932237E83600EE1605 /* ChannelsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		471DBD1A8570736312070503 /* Pods-Yalla Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yalla Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		BBA663AE5FEA751438F7B902 /* Pods-Yalla Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yalla Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yalla Chat/Pods-Yalla Chat.release.xcconfig"; sourceTree = "<group>"; };
 		D906960B7AB0DA8C2C02AF1E /* Pods_Yalla_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yalla_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9325338223D412000CE88AB /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		F932533A223ED24700CE88AB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F932533C223EDBFD00CE88AB /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F933B5922229DB0F00C1F4CF /* Yalla Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yalla Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F933B5952229DB0F00C1F4CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F933B5972229DB0F00C1F4CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +113,7 @@
 		F9E2D65B222C48630078E652 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewControllerCell.swift; sourceTree = "<group>"; };
-		F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
+		F9E2D662222C5F590078E652 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		F9E93FE822356DFC00B5A44B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		F9EBF2CD223177960008BAA7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
@@ -121,7 +126,6 @@
 		F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseManager.swift; sourceTree = "<group>"; };
 		F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
 		F9F223912237CB8C00EE1605 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		F9F223932237E83600EE1605 /* ChannelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +228,6 @@
 		F98DCCA122355F7400071224 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				F9F223932237E83600EE1605 /* ChannelsRepository.swift */,
 				F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */,
 				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
 			);
@@ -338,8 +341,11 @@
 		F9E2D65F222C55260078E652 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				F9E2D662222C5F590078E652 /* TimelineTableViewController.swift */,
+				F9E2D662222C5F590078E652 /* TimelineViewController.swift */,
 				F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */,
+				F9325338223D412000CE88AB /* NewPostViewController.swift */,
+				F932533A223ED24700CE88AB /* Post.swift */,
+				F932533C223EDBFD00CE88AB /* Comment.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -533,13 +539,12 @@
 				F9CE4F4B2230522A0048A96A /* VerificationCodeViewController.swift in Sources */,
 				F9E2D658222C44150078E652 /* Extensions.swift in Sources */,
 				F9DAFFE8222C6C8E0076C198 /* ContactsViewController.swift in Sources */,
-				F9E2D663222C5F590078E652 /* TimelineTableViewController.swift in Sources */,
+				F9E2D663222C5F590078E652 /* TimelineViewController.swift in Sources */,
 				F9EBF2D722317FED0008BAA7 /* Keys.swift in Sources */,
 				F9EBF2DD2233F0910008BAA7 /* ActionSheetPicker.swift in Sources */,
 				F9342D8322368A5000FD777E /* UIColor+Additions.swift in Sources */,
 				F9342D9822369BE400FD777E /* ChannelsViewController.swift in Sources */,
 				F9CE4F432230387E0048A96A /* FirebaseUser.swift in Sources */,
-				F9F223942237E83600EE1605 /* ChannelsRepository.swift in Sources */,
 				F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */,
 				F9EBF2D522317EE20008BAA7 /* NotificationName+Extension.swift in Sources */,
 				F9EBF2E122340E450008BAA7 /* Alert.swift in Sources */,
@@ -548,6 +553,7 @@
 				F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */,
 				F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */,
 				F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */,
+				F9325339223D412000CE88AB /* NewPostViewController.swift in Sources */,
 				F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */,
 				F9342D9022368A7500FD777E /* NavigationController.swift in Sources */,
 				F9342D9722369BE400FD777E /* ChatViewController.swift in Sources */,
@@ -561,6 +567,7 @@
 				F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */,
 				F9CC582C223A7C16009490F8 /* R.generated.swift in Sources */,
 				F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */,
+				F932533D223EDBFD00CE88AB /* Comment.swift in Sources */,
 				F9342D8A22368A6400FD777E /* DatabaseRepresentation.swift in Sources */,
 				F9E93FE922356DFC00B5A44B /* ImageCache.swift in Sources */,
 				F9CE4F4722304E460048A96A /* ValidationHelper.swift in Sources */,
@@ -569,6 +576,7 @@
 				F9342D8222368A5000FD777E /* UIView+Additions.swift in Sources */,
 				F98DCC962235571800071224 /* PreloadViewController.swift in Sources */,
 				F9342D8422368A5000FD777E /* UICollectionView+Additions.swift in Sources */,
+				F932533B223ED24700CE88AB /* Post.swift in Sources */,
 				F9342D7C22368A3B00FD777E /* AppSettings.swift in Sources */,
 				F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */,
 				F9F223922237CB8C00EE1605 /* AppController.swift in Sources */,
