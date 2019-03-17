@@ -10,29 +10,31 @@ import UIKit
 import Firebase
 
 protocol FirebaseStorageManagerDelegate{
-    func profilePictureUploadProgress(_ progress: Double)
+    func uploadProgress(_ progress: Double)
 }
 class FirebaseStorageManager {
     
     let ref = Storage.storage().reference()
     var delegate: FirebaseStorageManagerDelegate?
     
-    func uploadProfilePic(_ image: UIImage,for key: String, completion: @escaping (_ error: Error?) -> Void){
+    func uploadPicture(_ image: UIImage,for key: String, completion: @escaping (_ downloadUrl: String?, _ error: Error?) -> Void){
         let profileImageRef = ref.child(Keys.profilePictures).child(key)
         let uploadTask: StorageUploadTask!
         if let uploadData = image.jpegData(compressionQuality: 0.25) {
             uploadTask = profileImageRef.putData(uploadData, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    completion(error)
-                } else {
-                    completion(nil)
+                guard  error == nil else {
+                    completion(nil, error)
+                    return
                 }
+                self.ref.child(key).downloadURL(completion: { (url, error) in
+                    completion(url?.absoluteString, error)
+                })
             }
             
             uploadTask.observe(.progress) { snapshot in
                 let percentComplete = Double(snapshot.progress!.completedUnitCount)
                     / Double(snapshot.progress!.totalUnitCount)
-                self.delegate?.profilePictureUploadProgress(percentComplete)
+                self.delegate?.uploadProgress(percentComplete)
             }
         }
     }

@@ -19,8 +19,8 @@ struct Post {
     var likes: [String] = []
     var comments: [String] = []
     
-    init(id: String, sender: String, text: String) {
-        self.id = id
+    init(sender: String, text: String) {
+        self.id = UUID().uuidString
         self.senderId = sender
         self.text = text
         self.creationDate = Date()

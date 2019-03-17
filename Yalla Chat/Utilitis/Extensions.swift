@@ -16,7 +16,7 @@ extension UITextField{
     }
     
     func isEmpty() -> Bool{
-        return self.text == "" || self.text == nil
+        return self.text == nil || self.text!.isEmpty
     }
 }
 

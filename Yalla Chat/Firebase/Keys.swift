@@ -10,7 +10,9 @@ import Foundation
 
 struct Keys {
     static let users = "users"
+    static let posts = "posts"
     static let profilePictures = "profilePictures"
+    static let postImages = "postImages"
 
     struct User {
         static let fullName = "fullName"

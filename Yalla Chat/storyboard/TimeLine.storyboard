@@ -115,6 +115,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nvX-n4-KwP">
+                                <rect key="frame" x="0.0" y="617" width="375" height="0.0"/>
+                                <color key="progressTintColor" red="1" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aek-oB-Pzq">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
@@ -164,38 +168,64 @@
                                     <constraint firstAttribute="bottom" secondItem="4jk-OL-J6K" secondAttribute="bottom" id="ctB-sP-Tdd"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GwO-LP-dzi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="353"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ph2-p4-U7f">
-                                <rect key="frame" x="0.0" y="417" width="375" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header shadow" translatesAutoresizingMaskIntoConstraints="NO" id="dUG-wO-8D2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="iFW-Fo-Gwx"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="iXy-iI-gyD"/>
+                                </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y48-24-V1X">
+                                <rect key="frame" x="0.0" y="76" width="375" height="541"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GwO-LP-dzi">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="324.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ph2-p4-U7f">
+                                        <rect key="frame" x="0.0" y="324.5" width="375" height="216.5"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ph2-p4-U7f" firstAttribute="top" secondItem="GwO-LP-dzi" secondAttribute="bottom" id="5ve-hG-Trr"/>
+                                    <constraint firstItem="Ph2-p4-U7f" firstAttribute="top" secondItem="GwO-LP-dzi" secondAttribute="bottom" id="HhN-Le-tfe"/>
+                                    <constraint firstAttribute="trailing" secondItem="GwO-LP-dzi" secondAttribute="trailing" id="J6m-dX-V1o"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ph2-p4-U7f" secondAttribute="trailing" id="Lok-JO-pRz"/>
+                                    <constraint firstItem="Ph2-p4-U7f" firstAttribute="height" secondItem="Y48-24-V1X" secondAttribute="height" multiplier="0.4" id="PxP-pZ-X9R"/>
+                                    <constraint firstItem="Ph2-p4-U7f" firstAttribute="leading" secondItem="Y48-24-V1X" secondAttribute="leading" id="Z2W-iu-nrB"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ph2-p4-U7f" secondAttribute="bottom" id="fy0-b1-5Cs"/>
+                                    <constraint firstItem="GwO-LP-dzi" firstAttribute="leading" secondItem="Y48-24-V1X" secondAttribute="leading" id="plj-xH-5AF"/>
+                                    <constraint firstItem="GwO-LP-dzi" firstAttribute="top" secondItem="Y48-24-V1X" secondAttribute="top" id="v8x-b4-Rxo"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ph2-p4-U7f" firstAttribute="leading" secondItem="3aU-zY-5SB" secondAttribute="leading" id="DkK-ZV-sbN"/>
-                            <constraint firstItem="Ph2-p4-U7f" firstAttribute="top" secondItem="GwO-LP-dzi" secondAttribute="bottom" id="FRK-jn-wTE"/>
-                            <constraint firstItem="Ph2-p4-U7f" firstAttribute="height" secondItem="fLF-VA-X1k" secondAttribute="height" multiplier="0.3" id="Lad-jP-JVD"/>
+                            <constraint firstItem="aek-oB-Pzq" firstAttribute="top" secondItem="nvX-n4-KwP" secondAttribute="bottom" id="0Zf-5W-qch"/>
+                            <constraint firstItem="dUG-wO-8D2" firstAttribute="trailing" secondItem="3aU-zY-5SB" secondAttribute="trailing" id="0dO-GS-8FE"/>
+                            <constraint firstAttribute="trailing" secondItem="nvX-n4-KwP" secondAttribute="trailing" id="8Vk-Je-jQA"/>
+                            <constraint firstItem="Y48-24-V1X" firstAttribute="leading" secondItem="3aU-zY-5SB" secondAttribute="leading" id="Jyh-dE-ZMl"/>
                             <constraint firstItem="3aU-zY-5SB" firstAttribute="bottom" secondItem="aek-oB-Pzq" secondAttribute="bottom" id="Upr-ms-nmi"/>
-                            <constraint firstItem="GwO-LP-dzi" firstAttribute="top" secondItem="3aU-zY-5SB" secondAttribute="top" id="VBW-bR-4xd"/>
                             <constraint firstItem="aek-oB-Pzq" firstAttribute="leading" secondItem="3aU-zY-5SB" secondAttribute="leading" id="bdD-be-Bjm"/>
-                            <constraint firstItem="GwO-LP-dzi" firstAttribute="leading" secondItem="3aU-zY-5SB" secondAttribute="leading" id="kV3-Qb-LlE"/>
-                            <constraint firstItem="3aU-zY-5SB" firstAttribute="trailing" secondItem="Ph2-p4-U7f" secondAttribute="trailing" id="mUN-Tn-I5v"/>
+                            <constraint firstItem="Y48-24-V1X" firstAttribute="trailing" secondItem="3aU-zY-5SB" secondAttribute="trailing" id="kyf-4l-YbT"/>
+                            <constraint firstItem="nvX-n4-KwP" firstAttribute="leading" secondItem="fLF-VA-X1k" secondAttribute="leading" id="oHP-LP-kr4"/>
+                            <constraint firstItem="dUG-wO-8D2" firstAttribute="top" secondItem="3aU-zY-5SB" secondAttribute="top" id="qxA-5Z-7Sa"/>
                             <constraint firstItem="3aU-zY-5SB" firstAttribute="trailing" secondItem="aek-oB-Pzq" secondAttribute="trailing" id="r4H-hK-9sF"/>
-                            <constraint firstItem="3aU-zY-5SB" firstAttribute="trailing" secondItem="GwO-LP-dzi" secondAttribute="trailing" id="vEj-73-ez3"/>
-                            <constraint firstItem="aek-oB-Pzq" firstAttribute="top" secondItem="Ph2-p4-U7f" secondAttribute="bottom" id="zBb-jy-YmP"/>
+                            <constraint firstItem="Y48-24-V1X" firstAttribute="top" secondItem="dUG-wO-8D2" secondAttribute="bottom" id="u8l-tE-mQG"/>
+                            <constraint firstItem="dUG-wO-8D2" firstAttribute="leading" secondItem="3aU-zY-5SB" secondAttribute="leading" id="uCo-kN-rdH"/>
+                            <constraint firstItem="nvX-n4-KwP" firstAttribute="top" secondItem="Y48-24-V1X" secondAttribute="bottom" id="wDy-q2-aYe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3aU-zY-5SB"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Post" id="oLv-rP-yXc"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="Upr-ms-nmi" id="Tas-im-48m"/>
-                        <outlet property="imageHeightConstraint" destination="Lad-jP-JVD" id="cqP-t5-r8b"/>
                         <outlet property="imageView" destination="Ph2-p4-U7f" id="iHa-Gx-i3b"/>
+                        <outlet property="progressView" destination="nvX-n4-KwP" id="pLX-HW-xTW"/>
                         <outlet property="textView" destination="GwO-LP-dzi" id="gIM-eD-pTU"/>
+                        <outlet property="uploadPostView" destination="aek-oB-Pzq" id="5ya-EK-ASo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WF-wi-OhW" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 import IQKeyboardManagerSwift
 
 class NewPostViewController: UIViewController {
@@ -14,19 +15,27 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var uploadPostView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     private let group = DispatchGroup()
+    private var post: Post!
+    private let storageManager = FirebaseStorageManager()
+    private let db = Firestore.firestore()
+    private var postReference: CollectionReference {
+        return db.collection(Keys.posts)
+    }
     
     override func viewDidLoad() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        super.viewDidLoad()
+        storageManager.delegate = self
+        post = Post(sender: FirebaseUser.shared.uid!, text: textView.text)
+        setUpKeyboardNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateImagePostHeight(constant: 0)
+        textView.becomeFirstResponder()
         IQKeyboardManager.shared.enableAutoToolbar = false
         tabBarController?.tabBar.isHidden = true
     }
@@ -50,7 +59,20 @@ class NewPostViewController: UIViewController {
     
     //MARK: @IBActions
     @IBAction func didPressPost(_ sender: Any) {
+        guard !textView.text.isEmpty else {
+            Alert.showMessage(message: "You should type anything first!", theme: .warning)
+            return
+        }
         
+        if let image = imageView.image{
+            upload(image: image) {[weak self] isUploaded in
+                if isUploaded{
+                    self?.uploadPost()
+                }
+            }
+        }else{
+            uploadPost()
+        }
     }
     
     @IBAction func didPressChooseImage(_ sender: Any) {
@@ -60,17 +82,44 @@ class NewPostViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    
     //MARK: Private methods
-    private func uploadPost(completion: @escaping (Bool)->Void){
-        if let postImage = imageView.image{
+    
+     private func uploadPost(){
+        postReference.document(post.id).setData(post.representation) {[weak self] (error) in
+            if let error = error{
+                Alert.showMessage(message: "Couldn't upload your post, try Again! \n \(error.localizedDescription)", theme: .error)
+            }else{
+                Alert.showMessage(message: "Your post had uploaded successfully", theme: .success)
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+
+    
+    private func upload(image: UIImage, completion: @escaping (_ isUploaded: Bool)->Void){
+        let imageKey = "\(Keys.postImages)/\(post.id)"
+        IndicatorLoading.showLoading(imageView)
+        storageManager.uploadPicture(image, for: imageKey) {[weak self] (imageUrl, error) in
+            guard let self = self else{
+                completion(false)
+                return
+            }
+            IndicatorLoading.hideLoading(self.imageView)
+            guard error == nil else{
+                Alert.showMessage(message: "Couldn't upload picture: \(error!.localizedDescription)", theme: .error)
+                completion(false)
+                return
+            }
             
+            self.post.imageUrl = imageUrl
+            completion(true)
         }
     }
     
-    private func updateImagePostHeight(constant: CGFloat){
-        imageHeightConstraint.constant = constant
-        imageView.layoutIfNeeded()
-        textView.layoutIfNeeded()
+    fileprivate func setUpKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 
@@ -78,9 +127,16 @@ class NewPostViewController: UIViewController {
 extension NewPostViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            updateImagePostHeight(constant: self.view.frame.height * 0.3)
             imageView.image = image
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension NewPostViewController: FirebaseStorageManagerDelegate{
+    func uploadProgress(_ progress: Double) {
+        DispatchQueue.main.async {
+            self.progressView.progress = Float(progress)
+        }
     }
 }

@@ -42,13 +42,13 @@ struct Alert {
     private static  func themeIcon(from theme: Theme) -> String{
         switch theme {
         case .error:
-            return "⚠️"
+            return "˟"
         case .success:
             return "✅"
         case .info:
             return "ℹ️"
         case .warning:
-            return "❌"
+            return "⚠️"
         }
     }
     

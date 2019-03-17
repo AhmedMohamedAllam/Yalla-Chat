@@ -154,7 +154,7 @@ class SignUpViewController: UIViewController {
             return
         }
         IndicatorLoading.showLoading(profileImageView)
-        storageManager.uploadProfilePic(image, for: userFirebase.currentUser!.uid) { (error) in
+        storageManager.uploadPicture(image, for: userFirebase.currentUser!.uid) { (imageUrl, error) in
             IndicatorLoading.hideLoading(self.profileImageView)
             self.profileProgressBar.isHidden = true
             if error != nil{
@@ -183,7 +183,7 @@ extension SignUpViewController: UINavigationControllerDelegate, UIImagePickerCon
 
 
 extension SignUpViewController: FirebaseStorageManagerDelegate{
-    func profilePictureUploadProgress(_ progress: Double) {
+    func uploadProgress(_ progress: Double) {
         DispatchQueue.main.async {
             self.profileProgressBar.progress = Float(progress)
         }
