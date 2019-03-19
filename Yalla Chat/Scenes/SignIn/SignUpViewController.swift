@@ -73,25 +73,28 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    fileprivate func uploadUserData(_ uid: String) {
+        let userReference = "\(Keys.users)/\(uid)"
+        databaseManager.uploadModel(userData, at: userReference){ [weak self] error in
+            guard let self = self else {return}
+            guard error == nil else{
+                Alert.showMessage(message: "Error saving data!, \(error!.localizedDescription)", theme: .error)
+                return
+            }
+            self.goToHome()
+        }
+    }
+    
     private func uploadUser(){
         guard let uid = userFirebase.currentUser?.uid else{
             Alert.showMessage(message: "Something went wrong, try to login again!", theme: .error)
             return
         }
-        let userReference = "\(Keys.users)/\(uid)"
-        databaseManager.uploadModel(userData, at: userReference){ [weak self] error in
-            guard let self = self else {return}
-            guard error == nil else{
-                 Alert.showMessage(message: "Error saving data!, \(error!.localizedDescription)", theme: .error)
-                return
-            }
-            if !self.choosedImage{
-                self.goToHome()
-            }else{
-                self.profileProgressBar.isHidden = false
-                self.uploadPicture()
-            }
-         }
+        if choosedImage{
+            self.uploadPicture()
+        }else{
+            uploadUserData(uid)
+        }
         
     }
     
@@ -153,16 +156,18 @@ class SignUpViewController: UIViewController {
         guard choosedImage, let image = profileImageView.image else {
             return
         }
+        self.profileProgressBar.isHidden = false
         IndicatorLoading.showLoading(profileImageView)
-        storageManager.uploadPicture(image, for: userFirebase.currentUser!.uid) { (imageUrl, error) in
+        storageManager.upload(image: image, to: .profilePictures, for: userFirebase.currentUser!.uid) { (imageUrl, error) in
             IndicatorLoading.hideLoading(self.profileImageView)
             self.profileProgressBar.isHidden = true
             if error != nil{
                 Alert.showMessage(message: "Couldn't upload picture, \(error!.localizedDescription), try again", theme: .error)
             }else{
+                self.userData[Keys.User.imageUrl] = imageUrl
                 Alert.showMessage(message: "Profile picture uploaded successfully", theme: .success)
+                self.uploadUserData(FirebaseUser.shared.uid!)
             }
-            self.goToHome()
         }
     }
 

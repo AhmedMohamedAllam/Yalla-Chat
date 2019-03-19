@@ -49,7 +49,7 @@
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="post image" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vp-kb-Syv">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vp-kb-Syv">
                             <rect key="frame" x="12" y="93" width="351" height="509.5"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-9c-whP" userLabel="horizontalLine">
@@ -145,13 +145,19 @@
                 <constraint firstItem="R2a-Vb-HMj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vdW-fe-87i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="postDate" destination="N21-Yr-2XS" id="b65-dp-7P0"/>
+                <outlet property="postImage" destination="0vp-kb-Syv" id="F47-1D-qr7"/>
+                <outlet property="postText" destination="iQC-Ge-OgM" id="rSm-3r-JFU"/>
+                <outlet property="profilePic" destination="Zef-AC-wZ8" id="QuQ-GW-nfi"/>
+                <outlet property="userName" destination="pW3-4j-lXj" id="uvA-zR-iYF"/>
+            </connections>
             <point key="canvasLocation" x="36" y="184"/>
         </view>
     </objects>
     <resources>
         <image name="comment" width="36" height="33"/>
         <image name="like" width="36" height="31"/>
-        <image name="post image" width="256" height="256"/>
         <image name="user" width="54" height="54"/>
     </resources>
 </document>

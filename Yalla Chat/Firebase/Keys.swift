@@ -31,6 +31,8 @@ struct Keys {
         static let sender = "sender"
         static let creationDate = "creationDate"
         static let imageUrl = "imageUrl"
+        static let imageWidth = "imageWidth"
+        static let imageHeight = "imageHeight"
         static let likes = "likes"
         static let comments = "comments"
     }

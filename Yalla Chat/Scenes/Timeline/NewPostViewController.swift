@@ -59,11 +59,7 @@ class NewPostViewController: UIViewController {
     
     //MARK: @IBActions
     @IBAction func didPressPost(_ sender: Any) {
-        guard !textView.text.isEmpty else {
-            Alert.showMessage(message: "You should type anything first!", theme: .warning)
-            return
-        }
-        
+        post.text = textView.text
         if let image = imageView.image{
             upload(image: image) {[weak self] isUploaded in
                 if isUploaded{
@@ -98,13 +94,17 @@ class NewPostViewController: UIViewController {
 
     
     private func upload(image: UIImage, completion: @escaping (_ isUploaded: Bool)->Void){
-        let imageKey = "\(Keys.postImages)/\(post.id)"
+        post.imageWidth = CGFloat(image.cgImage!.width)
+        post.imageHeight = CGFloat(image.cgImage!.height)
         IndicatorLoading.showLoading(imageView)
-        storageManager.uploadPicture(image, for: imageKey) {[weak self] (imageUrl, error) in
+        storageManager.upload(image: image, to: .postImages, for: post.id) {[weak self] (imageUrl, error) in
             guard let self = self else{
                 completion(false)
                 return
             }
+            
+            self.progressView.isHidden = true
+            self.progressView.progress = 0
             IndicatorLoading.hideLoading(self.imageView)
             guard error == nil else{
                 Alert.showMessage(message: "Couldn't upload picture: \(error!.localizedDescription)", theme: .error)
@@ -121,12 +121,14 @@ class NewPostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
 }
 
 
 extension NewPostViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            print(image.size)
             imageView.image = image
         }
         dismiss(animated: true, completion: nil)

@@ -18,6 +18,8 @@ struct Post {
     var imageUrl: String?
     var likes: [String] = []
     var comments: [String] = []
+    var imageWidth: CGFloat = 0
+    var imageHeight: CGFloat = 0
     
     init(sender: String, text: String) {
         self.id = UUID().uuidString
@@ -44,6 +46,8 @@ struct Post {
         self.creationDate = timeStamp.dateValue()
         self.likes = data[Keys.Post.likes] as? [String] ?? []
         self.comments = data[Keys.Post.comments] as? [String] ?? []
+        self.imageWidth = data[Keys.Post.imageWidth] as? CGFloat ?? 0
+        self.imageHeight = data[Keys.Post.imageHeight] as? CGFloat ?? 0
     }
     
 }
@@ -57,7 +61,9 @@ extension Post: DatabaseRepresentation {
             Keys.Post.text: text,
             Keys.Post.sender: senderId,
             Keys.Post.likes: likes,
-            Keys.Post.comments: comments
+            Keys.Post.comments: comments,
+            Keys.Post.imageWidth: imageWidth,
+            Keys.Post.imageHeight: imageHeight
         ]
         
         if imageUrl != nil{
@@ -76,7 +82,8 @@ extension Post: Comparable {
     }
     
     static func < (lhs: Post, rhs: Post) -> Bool {
-        return lhs.creationDate < rhs.creationDate
+        return rhs.creationDate < lhs.creationDate
     }
+    
     
 }

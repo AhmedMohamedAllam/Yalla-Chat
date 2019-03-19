@@ -17,8 +17,8 @@ class FirebaseStorageManager {
     let ref = Storage.storage().reference()
     var delegate: FirebaseStorageManagerDelegate?
     
-    func uploadPicture(_ image: UIImage,for key: String, completion: @escaping (_ downloadUrl: String?, _ error: Error?) -> Void){
-        let profileImageRef = ref.child(Keys.profilePictures).child(key)
+    func upload(image: UIImage, to folder: StorageFolder, for key: String, completion: @escaping (_ downloadUrl: String?, _ error: Error?) -> Void){
+        let profileImageRef = ref.child(folder.rawValue).child(key)
         let uploadTask: StorageUploadTask!
         if let uploadData = image.jpegData(compressionQuality: 0.25) {
             uploadTask = profileImageRef.putData(uploadData, metadata: nil) { (metadata, error) in
@@ -26,7 +26,7 @@ class FirebaseStorageManager {
                     completion(nil, error)
                     return
                 }
-                self.ref.child(key).downloadURL(completion: { (url, error) in
+                profileImageRef.downloadURL(completion: { (url, error) in
                     completion(url?.absoluteString, error)
                 })
             }
@@ -45,4 +45,10 @@ class FirebaseStorageManager {
         profileImageRef.downloadURL(completion: completion)
     }
     
+}
+
+
+enum StorageFolder: String{
+    case profilePictures
+    case postImages
 }
