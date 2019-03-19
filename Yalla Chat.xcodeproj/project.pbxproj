@@ -33,6 +33,8 @@
 		F9342D9722369BE400FD777E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342D9522369BE300FD777E /* ChatViewController.swift */; };
 		F9342D9822369BE400FD777E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9342D9622369BE400FD777E /* ChannelsViewController.swift */; };
 		F938BA8A222AC47100F31083 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F938BA89222AC47100F31083 /* TimelineCell.xib */; };
+		F9518AA22241134800A37517 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9518AA12241134800A37517 /* PostDetailsViewController.swift */; };
+		F9518AA722411A4800A37517 /* TimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9518AA622411A4800A37517 /* TimelineRepository.swift */; };
 		F977405522301FB100B95C23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F977405422301FB100B95C23 /* GoogleService-Info.plist */; };
 		F98DCC962235571800071224 /* PreloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98DCC952235571800071224 /* PreloadViewController.swift */; };
 		F98DCC9C22355B7400071224 /* Preload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98DCC9B22355B7400071224 /* Preload.storyboard */; };
@@ -96,6 +98,8 @@
 		F9342D9522369BE300FD777E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		F9342D9622369BE400FD777E /* ChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		F938BA89222AC47100F31083 /* TimelineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
+		F9518AA12241134800A37517 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		F9518AA622411A4800A37517 /* TimelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRepository.swift; sourceTree = "<group>"; };
 		F977405422301FB100B95C23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F98DCC952235571800071224 /* PreloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadViewController.swift; sourceTree = "<group>"; };
 		F98DCC9B22355B7400071224 /* Preload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preload.storyboard; sourceTree = "<group>"; };
@@ -217,6 +221,33 @@
 			path = xib;
 			sourceTree = "<group>";
 		};
+		F9518AA32241137700A37517 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F932533A223ED24700CE88AB /* Post.swift */,
+				F932533C223EDBFD00CE88AB /* Comment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F9518AA42241138400A37517 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2D662222C5F590078E652 /* TimelineViewController.swift */,
+				F9325338223D412000CE88AB /* NewPostViewController.swift */,
+				F9518AA12241134800A37517 /* PostDetailsViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		F9518AA52241139800A37517 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		F98DCC942235570A00071224 /* Preload */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +261,7 @@
 			children = (
 				F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */,
 				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
+				F9518AA622411A4800A37517 /* TimelineRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -341,11 +373,9 @@
 		F9E2D65F222C55260078E652 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				F9E2D662222C5F590078E652 /* TimelineViewController.swift */,
-				F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */,
-				F9325338223D412000CE88AB /* NewPostViewController.swift */,
-				F932533A223ED24700CE88AB /* Post.swift */,
-				F932533C223EDBFD00CE88AB /* Comment.swift */,
+				F9518AA42241138400A37517 /* controllers */,
+				F9518AA32241137700A37517 /* Models */,
+				F9518AA52241139800A37517 /* cell */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -471,7 +501,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -560,6 +590,7 @@
 				F9342D9022368A7500FD777E /* NavigationController.swift in Sources */,
 				F9342D9722369BE400FD777E /* ChatViewController.swift in Sources */,
 				F9CE4F402230302B0048A96A /* SignInViewController.swift in Sources */,
+				F9518AA722411A4800A37517 /* TimelineRepository.swift in Sources */,
 				F9E2D65C222C48630078E652 /* ProfileViewController.swift in Sources */,
 				F9CE4F4522304E3B0048A96A /* IndicatorLoading.swift in Sources */,
 				F9342D8922368A6400FD777E /* Channel.swift in Sources */,
@@ -577,6 +608,7 @@
 				F9EBF2D9223185C00008BAA7 /* FirebaseRepository.swift in Sources */,
 				F9342D8222368A5000FD777E /* UIView+Additions.swift in Sources */,
 				F98DCC962235571800071224 /* PreloadViewController.swift in Sources */,
+				F9518AA22241134800A37517 /* PostDetailsViewController.swift in Sources */,
 				F9342D8422368A5000FD777E /* UICollectionView+Additions.swift in Sources */,
 				F932533B223ED24700CE88AB /* Post.swift in Sources */,
 				F9342D7C22368A3B00FD777E /* AppSettings.swift in Sources */,

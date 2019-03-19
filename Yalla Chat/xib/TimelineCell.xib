@@ -62,15 +62,13 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2My-W9-sz8" userLabel="like stack">
                             <rect key="frame" x="66.5" y="619" width="54.5" height="20"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sr-sG-uCR">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="SVP-31-HfL">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="gWf-7w-gYh"/>
-                                        <constraint firstAttribute="width" secondItem="4Sr-sG-uCR" secondAttribute="height" multiplier="1:1" id="kQX-IN-1Ev"/>
+                                        <constraint firstAttribute="width" secondItem="SVP-31-HfL" secondAttribute="height" multiplier="1:1" id="YI8-zY-WwM"/>
+                                        <constraint firstAttribute="width" constant="20" id="nVf-zb-XEP"/>
                                     </constraints>
-                                    <color key="tintColor" red="0.20392156859999999" green="0.44705882349999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <state key="normal" image="like"/>
-                                </button>
+                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxt-BO-UZR" userLabel="Like">
                                     <rect key="frame" x="28" y="0.0" width="26.5" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -79,17 +77,19 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Rxt-BO-UZR" firstAttribute="leading" secondItem="4Sr-sG-uCR" secondAttribute="trailing" constant="8" id="euV-fD-Tci"/>
+                                <constraint firstItem="Rxt-BO-UZR" firstAttribute="leading" secondItem="SVP-31-HfL" secondAttribute="trailing" constant="8" id="rMo-BG-kuU"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CiR-yd-aeE" userLabel="comment stack">
                             <rect key="frame" x="236" y="619" width="91" height="20"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmP-qi-cOD">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="ROE-aq-QNH">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                    <color key="tintColor" red="0.20392156859999999" green="0.44705882349999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <state key="normal" image="comment"/>
-                                </button>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ROE-aq-QNH" secondAttribute="height" multiplier="1:1" id="TpA-gQ-1h2"/>
+                                        <constraint firstAttribute="width" constant="20" id="jjC-LY-6T9"/>
+                                    </constraints>
+                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1z-yF-62F" userLabel="Comment">
                                     <rect key="frame" x="28" y="0.0" width="63" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -98,17 +98,34 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="S1z-yF-62F" firstAttribute="leading" secondItem="zmP-qi-cOD" secondAttribute="trailing" constant="8" id="pvT-Bf-ul9"/>
+                                <constraint firstItem="S1z-yF-62F" firstAttribute="leading" secondItem="ROE-aq-QNH" secondAttribute="trailing" constant="8" id="IyN-pB-F3g"/>
+                                <constraint firstItem="ROE-aq-QNH" firstAttribute="width" secondItem="ROE-aq-QNH" secondAttribute="height" multiplier="1:1" id="foD-Ws-Zga"/>
                             </constraints>
                         </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-k2-qwK" userLabel="LikeButton">
+                            <rect key="frame" x="66.5" y="619" width="54.5" height="20"/>
+                            <connections>
+                                <action selector="pressLike:" destination="iN0-l3-epB" eventType="touchUpInside" id="jzh-98-qtg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWe-Ud-8DW" userLabel="commentButton">
+                            <rect key="frame" x="236" y="619" width="91" height="20"/>
+                            <connections>
+                                <action selector="pressComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="TwB-AW-6tP"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="jFe-k2-qwK" firstAttribute="centerY" secondItem="2My-W9-sz8" secondAttribute="centerY" id="4xH-vZ-usC"/>
+                        <constraint firstItem="jFe-k2-qwK" firstAttribute="width" secondItem="2My-W9-sz8" secondAttribute="width" id="6zN-YI-rPO"/>
                         <constraint firstItem="iQC-Ge-OgM" firstAttribute="top" secondItem="Zef-AC-wZ8" secondAttribute="bottom" constant="8" id="AXG-91-LEm"/>
                         <constraint firstItem="2My-W9-sz8" firstAttribute="centerX" secondItem="R2a-Vb-HMj" secondAttribute="centerX" multiplier="0.5" id="AkN-zD-7yw"/>
+                        <constraint firstItem="qWe-Ud-8DW" firstAttribute="centerX" secondItem="CiR-yd-aeE" secondAttribute="centerX" id="Dl6-IB-hqN"/>
                         <constraint firstAttribute="bottom" secondItem="2My-W9-sz8" secondAttribute="bottom" constant="8" id="Dzc-Fx-DJU"/>
                         <constraint firstAttribute="trailing" secondItem="iQC-Ge-OgM" secondAttribute="trailing" constant="12" id="Od5-b7-PrM"/>
                         <constraint firstItem="N21-Yr-2XS" firstAttribute="top" secondItem="pW3-4j-lXj" secondAttribute="bottom" id="STH-Lc-SKQ"/>
+                        <constraint firstItem="qWe-Ud-8DW" firstAttribute="height" secondItem="CiR-yd-aeE" secondAttribute="height" id="TP1-Yo-pvx"/>
                         <constraint firstItem="Zef-AC-wZ8" firstAttribute="leading" secondItem="R2a-Vb-HMj" secondAttribute="leading" constant="12" id="TyQ-Td-yHf"/>
                         <constraint firstItem="CiR-yd-aeE" firstAttribute="centerY" secondItem="2My-W9-sz8" secondAttribute="centerY" id="UxT-h0-2vQ"/>
                         <constraint firstItem="jf5-9c-whP" firstAttribute="top" secondItem="0vp-kb-Syv" secondAttribute="bottom" constant="8" id="WhR-RU-U7e"/>
@@ -116,15 +133,17 @@
                         <constraint firstItem="pW3-4j-lXj" firstAttribute="bottom" secondItem="Zef-AC-wZ8" secondAttribute="centerY" id="aG8-uR-ah7"/>
                         <constraint firstItem="0vp-kb-Syv" firstAttribute="top" secondItem="iQC-Ge-OgM" secondAttribute="bottom" constant="8" id="aku-7J-ZBD"/>
                         <constraint firstItem="CiR-yd-aeE" firstAttribute="centerX" secondItem="R2a-Vb-HMj" secondAttribute="centerX" multiplier="1.5" id="c2g-JI-6mN"/>
-                        <constraint firstItem="zmP-qi-cOD" firstAttribute="width" secondItem="4Sr-sG-uCR" secondAttribute="width" id="dML-I2-fWG"/>
-                        <constraint firstItem="zmP-qi-cOD" firstAttribute="height" secondItem="4Sr-sG-uCR" secondAttribute="height" id="da6-kx-8Xv"/>
                         <constraint firstAttribute="trailing" secondItem="0vp-kb-Syv" secondAttribute="trailing" constant="12" id="deJ-kQ-k4K"/>
                         <constraint firstItem="Zef-AC-wZ8" firstAttribute="top" secondItem="R2a-Vb-HMj" secondAttribute="top" constant="12" id="dtv-xQ-ZS1"/>
                         <constraint firstItem="2My-W9-sz8" firstAttribute="top" secondItem="jf5-9c-whP" secondAttribute="bottom" constant="8" id="gFP-lb-N54"/>
+                        <constraint firstItem="jFe-k2-qwK" firstAttribute="height" secondItem="2My-W9-sz8" secondAttribute="height" id="gPv-CD-6Jy"/>
                         <constraint firstItem="pW3-4j-lXj" firstAttribute="leading" secondItem="Zef-AC-wZ8" secondAttribute="trailing" constant="16" id="hhL-f4-Qxk"/>
                         <constraint firstItem="jf5-9c-whP" firstAttribute="leading" secondItem="R2a-Vb-HMj" secondAttribute="leading" constant="16" id="i5l-ye-FOn"/>
+                        <constraint firstItem="jFe-k2-qwK" firstAttribute="centerX" secondItem="2My-W9-sz8" secondAttribute="centerX" id="ity-Wq-cJE"/>
                         <constraint firstItem="iQC-Ge-OgM" firstAttribute="leading" secondItem="Zef-AC-wZ8" secondAttribute="leading" id="mfP-T4-wMg"/>
+                        <constraint firstItem="qWe-Ud-8DW" firstAttribute="centerY" secondItem="CiR-yd-aeE" secondAttribute="centerY" id="r08-b7-B9A"/>
                         <constraint firstItem="N21-Yr-2XS" firstAttribute="leading" secondItem="pW3-4j-lXj" secondAttribute="leading" id="su2-Mk-tG5"/>
+                        <constraint firstItem="qWe-Ud-8DW" firstAttribute="width" secondItem="CiR-yd-aeE" secondAttribute="width" id="y28-aQ-2jq"/>
                         <constraint firstItem="0vp-kb-Syv" firstAttribute="leading" secondItem="R2a-Vb-HMj" secondAttribute="leading" constant="12" id="yRT-Q5-1Lx"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -146,6 +165,8 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="likeImageView" destination="SVP-31-HfL" id="EbU-Hz-XIS"/>
+                <outlet property="likeLabel" destination="Rxt-BO-UZR" id="37f-pN-XYg"/>
                 <outlet property="postDate" destination="N21-Yr-2XS" id="b65-dp-7P0"/>
                 <outlet property="postImage" destination="0vp-kb-Syv" id="F47-1D-qr7"/>
                 <outlet property="postText" destination="iQC-Ge-OgM" id="rSm-3r-JFU"/>
