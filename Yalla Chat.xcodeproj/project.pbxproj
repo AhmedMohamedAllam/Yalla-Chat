@@ -35,6 +35,8 @@
 		F938BA8A222AC47100F31083 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F938BA89222AC47100F31083 /* TimelineCell.xib */; };
 		F9518AA22241134800A37517 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9518AA12241134800A37517 /* PostDetailsViewController.swift */; };
 		F9518AA722411A4800A37517 /* TimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9518AA622411A4800A37517 /* TimelineRepository.swift */; };
+		F9518AAB22413A7300A37517 /* CommentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9518AAA22413A7300A37517 /* CommentsRepository.swift */; };
+		F957BFBD2242E2D50095A97C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F957BFBC2242E2D50095A97C /* CommentTableViewCell.swift */; };
 		F977405522301FB100B95C23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F977405422301FB100B95C23 /* GoogleService-Info.plist */; };
 		F98DCC962235571800071224 /* PreloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98DCC952235571800071224 /* PreloadViewController.swift */; };
 		F98DCC9C22355B7400071224 /* Preload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98DCC9B22355B7400071224 /* Preload.storyboard */; };
@@ -64,7 +66,6 @@
 		F9EBF2E122340E450008BAA7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E022340E450008BAA7 /* Alert.swift */; };
 		F9EBF2E3223413530008BAA7 /* FirebaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */; };
 		F9EBF2E5223417E80008BAA7 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */; };
-		F9F223922237CB8C00EE1605 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F223912237CB8C00EE1605 /* AppController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,8 @@
 		F938BA89222AC47100F31083 /* TimelineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		F9518AA12241134800A37517 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		F9518AA622411A4800A37517 /* TimelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRepository.swift; sourceTree = "<group>"; };
+		F9518AAA22413A7300A37517 /* CommentsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsRepository.swift; sourceTree = "<group>"; };
+		F957BFBC2242E2D50095A97C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		F977405422301FB100B95C23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F98DCC952235571800071224 /* PreloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadViewController.swift; sourceTree = "<group>"; };
 		F98DCC9B22355B7400071224 /* Preload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preload.storyboard; sourceTree = "<group>"; };
@@ -129,7 +132,6 @@
 		F9EBF2E022340E450008BAA7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F9EBF2E2223413530008BAA7 /* FirebaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseManager.swift; sourceTree = "<group>"; };
 		F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
-		F9F223912237CB8C00EE1605 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +190,6 @@
 				F938BA88222AC44C00F31083 /* xib */,
 				F933B5B12229DC2600C1F4CF /* storyboard */,
 				F933B5952229DB0F00C1F4CF /* AppDelegate.swift */,
-				F9F223912237CB8C00EE1605 /* AppController.swift */,
 				F933B5972229DB0F00C1F4CF /* ViewController.swift */,
 				F9342D7B22368A3B00FD777E /* AppSettings.swift */,
 				F933B59C2229DB1000C1F4CF /* Assets.xcassets */,
@@ -244,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */,
+				F957BFBC2242E2D50095A97C /* CommentTableViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -262,6 +264,7 @@
 				F9EBF2D8223185C00008BAA7 /* FirebaseRepository.swift */,
 				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
 				F9518AA622411A4800A37517 /* TimelineRepository.swift */,
+				F9518AAA22413A7300A37517 /* CommentsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */,
 				F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */,
 				F9325339223D412000CE88AB /* NewPostViewController.swift in Sources */,
+				F9518AAB22413A7300A37517 /* CommentsRepository.swift in Sources */,
 				F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */,
 				F9342D9022368A7500FD777E /* NavigationController.swift in Sources */,
 				F9342D9722369BE400FD777E /* ChatViewController.swift in Sources */,
@@ -600,6 +604,7 @@
 				F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */,
 				F9CC582C223A7C16009490F8 /* R.generated.swift in Sources */,
 				F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */,
+				F957BFBD2242E2D50095A97C /* CommentTableViewCell.swift in Sources */,
 				F932533D223EDBFD00CE88AB /* Comment.swift in Sources */,
 				F9342D8A22368A6400FD777E /* DatabaseRepresentation.swift in Sources */,
 				F9E93FE922356DFC00B5A44B /* ImageCache.swift in Sources */,
@@ -613,7 +618,6 @@
 				F932533B223ED24700CE88AB /* Post.swift in Sources */,
 				F9342D7C22368A3B00FD777E /* AppSettings.swift in Sources */,
 				F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */,
-				F9F223922237CB8C00EE1605 /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

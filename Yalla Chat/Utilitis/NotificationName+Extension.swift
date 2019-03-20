@@ -14,4 +14,8 @@ extension Notification.Name{
     static let postAdded = Notification.Name("postAdded")
     static let postUpdated = Notification.Name("postUpdated")
     static let postRemoved = Notification.Name("postRemoved")
+    
+    static let commentAdded = Notification.Name("commentAdded")
+    static let commentUpdated = Notification.Name("commentUpdated")
+    static let commentRemoved = Notification.Name("commentRemoved")
 }

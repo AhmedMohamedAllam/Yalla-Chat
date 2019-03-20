@@ -11,6 +11,7 @@ import Foundation
 struct Keys {
     static let users = "users"
     static let posts = "posts"
+    static let comments = "comments"
     static let profilePictures = "profilePictures"
     static let postImages = "postImages"
 
@@ -37,6 +38,12 @@ struct Keys {
         static let comments = "comments"
     }
     
+    struct Comment {
+        static let text = "text"
+        static let sender = "sender"
+        static let creationDate = "creationDate"
+    }
+    
     struct Chat {
         static let channels = "channels"
 
@@ -47,6 +54,5 @@ struct Keys {
             static let receiver = "receiver"
             static let hasNewMessage = "hasNewMessage"
         }
-
     }
 }
