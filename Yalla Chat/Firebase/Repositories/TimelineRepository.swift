@@ -19,6 +19,10 @@ class TimelineRepository {
     private var postListener: ListenerRegistration?
     
     init() {
+        
+    }
+    
+    func setupObserver(){
         postListener = postReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")

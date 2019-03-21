@@ -11,13 +11,12 @@ import FirebaseFirestore
 
 class CommentsRepository {
     private let db = Firestore.firestore()
-    private var commentReference: CollectionReference {
-        return db.collection(Keys.comments)
-    }
-    var comments = [Comment]()
+    private var commentReference: CollectionReference!
     private var commentListener: ListenerRegistration?
+    var comments = [Comment]()
     
-    init() {
+    init(postId: String) {
+        commentReference = db.collection(Keys.comments).document(postId).collection(Keys.data)
         commentListener = commentReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for post comments: \(error?.localizedDescription ?? "No error")")

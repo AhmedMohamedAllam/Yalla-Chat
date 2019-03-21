@@ -12,6 +12,7 @@ struct Keys {
     static let users = "users"
     static let posts = "posts"
     static let comments = "comments"
+    static let data = "data"
     static let profilePictures = "profilePictures"
     static let postImages = "postImages"
 

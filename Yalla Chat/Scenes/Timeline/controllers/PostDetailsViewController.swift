@@ -15,8 +15,8 @@ class PostDetailsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
-//    private let timelineRepository = TimelineRepository()
-    private let commentRepository = CommentsRepository()
+    private let timelineRepository = TimelineRepository()
+    private var commentRepository: CommentsRepository!
     
     private var comments: [Comment]{
         return commentRepository.comments
@@ -28,6 +28,7 @@ class PostDetailsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TimelineCell", bundle: nil), forCellReuseIdentifier: "PostDetailsViewControllerCell")
+        commentRepository = CommentsRepository(postId: post.id)
         setupCommentObservers()
         setUpKeyboardNotification()
     }
@@ -60,13 +61,11 @@ class PostDetailsViewController: UIViewController {
             Alert.showMessage(message: "Write your comment first!", theme: .warning)
             return
         }
-        
+        commentTextField.text = ""
         let comment = Comment(sender: FirebaseUser.shared.uid!, text: commentText)
-        commentRepository.uploadComment(comment) {[weak self](error) in
+        commentRepository.uploadComment(comment) {(error) in
             if let error = error{
                 print("Couldn't upload your comment, try Again! \n \(error.localizedDescription)")
-            }else{
-                self?.commentTextField.text = ""
             }
         }
     }
@@ -175,7 +174,7 @@ extension PostDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailsViewControllerCell", for: indexPath) as! TimelineViewControllerCell
-//            cell.delegate = self
+            cell.delegate = self
             cell.updateCell(post: self.post)
             return cell
         }else{
@@ -190,21 +189,21 @@ extension PostDetailsViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 
-//extension PostDetailsViewController: TimeLineCellDelegate{
-//    func didTapLike(on post: Post) {
-//        var currentPost = post
-//        let myUid = FirebaseUser.shared.uid!
-//        let isLiked = post.likes.filter{$0 == myUid}.count > 0
-//        if isLiked{
-//            currentPost.likes.removeAll { (userId) -> Bool in
-//                userId == myUid
-//            }
-//        }else{
-//            currentPost.likes.append(myUid)
-//        }
-//        timelineRepository.updatePost(currentPost)
-//    }
-//
-//    func didTapComment(on post: Post) {}
-//
-//}
+extension PostDetailsViewController: TimeLineCellDelegate{
+    func didTapLike(on post: Post) {
+        var currentPost = post
+        let myUid = FirebaseUser.shared.uid!
+        let isLiked = post.likes.filter{$0 == myUid}.count > 0
+        if isLiked{
+            currentPost.likes.removeAll { (userId) -> Bool in
+                userId == myUid
+            }
+        }else{
+            currentPost.likes.append(myUid)
+        }
+        timelineRepository.updatePost(currentPost)
+    }
+
+    func didTapComment(on post: Post) {}
+
+}
