@@ -25,7 +25,8 @@ struct Keys {
         static let gender = "gender"
         static let type = "type"
         static let channels = "channels"
-        
+        static let joinDate = "joinDate"
+
     }
     
     struct Post {

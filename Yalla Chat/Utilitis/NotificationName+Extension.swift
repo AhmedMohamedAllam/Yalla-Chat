@@ -10,7 +10,7 @@ import Foundation
 
 extension Notification.Name{
     static let receiveUser = Notification.Name("receiveUser")
-    static let channelAdded = Notification.Name("channelAdded")
+
     static let postAdded = Notification.Name("postAdded")
     static let postUpdated = Notification.Name("postUpdated")
     static let postRemoved = Notification.Name("postRemoved")
@@ -18,4 +18,8 @@ extension Notification.Name{
     static let commentAdded = Notification.Name("commentAdded")
     static let commentUpdated = Notification.Name("commentUpdated")
     static let commentRemoved = Notification.Name("commentRemoved")
+    
+    static let channelAdded = Notification.Name("channelAdded")
+    static let channelUpdated = Notification.Name("channelUpdated")
+    static let channelRemoved = Notification.Name("channelRemoved")
 }

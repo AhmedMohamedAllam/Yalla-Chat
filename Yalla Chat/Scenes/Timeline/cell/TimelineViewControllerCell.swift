@@ -21,6 +21,7 @@ class TimelineViewControllerCell: UITableViewCell {
     @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var likeImageView: UIImageView!
     private let users = UsersRepository()
     private var post: Post!
@@ -57,6 +58,26 @@ class TimelineViewControllerCell: UITableViewCell {
         postDate.text = post.creationDate.timeAgoDisplay()
         let isLiked = post.likes.filter{$0 == FirebaseUser.shared.uid!}.count > 0
         updateLikeState(isLiked: isLiked)
+        updateLikesCount(post: post)
+        updateCommentsCount(post: post)
+    }
+    
+    private func updateLikesCount(post: Post){
+        let count = post.likes.count
+        if count > 0{
+            likeLabel.text = "like (\(count))"
+        }else{
+            likeLabel.text = "like"
+        }
+    }
+    
+    private func updateCommentsCount(post: Post){
+        let count = post.comments.count
+        if count > 0{
+            commentLabel.text = "comment (\(count))"
+        }else{
+            commentLabel.text = "comment"
+        }
     }
     
     private func updateProfilePic(imageUrl: String?){

@@ -64,7 +64,7 @@ extension Comment: Comparable {
     }
     
     static func < (lhs: Comment, rhs: Comment) -> Bool {
-        return lhs.creationDate < rhs.creationDate
+        return rhs.creationDate < lhs.creationDate
     }
     
 }

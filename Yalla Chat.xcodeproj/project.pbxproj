@@ -55,6 +55,7 @@
 		F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */; };
 		F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */; };
 		F9E2D663222C5F590078E652 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2D662222C5F590078E652 /* TimelineViewController.swift */; };
+		F9E7CF812246540400D786AC /* ChannelsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7CF802246540400D786AC /* ChannelsRepository.swift */; };
 		F9E93FE922356DFC00B5A44B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E93FE822356DFC00B5A44B /* ImageCache.swift */; };
 		F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2CD223177960008BAA7 /* UserModel.swift */; };
 		F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */; };
@@ -121,6 +122,7 @@
 		F9E2D65D222C48FF0078E652 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F9E2D660222C553D0078E652 /* TimelineViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewControllerCell.swift; sourceTree = "<group>"; };
 		F9E2D662222C5F590078E652 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		F9E7CF802246540400D786AC /* ChannelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRepository.swift; sourceTree = "<group>"; };
 		F9E93FE822356DFC00B5A44B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		F9EBF2CD223177960008BAA7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F9EBF2D022317D9B0008BAA7 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				F9EBF2E4223417E80008BAA7 /* UsersRepository.swift */,
 				F9518AA622411A4800A37517 /* TimelineRepository.swift */,
 				F9518AAA22413A7300A37517 /* CommentsRepository.swift */,
+				F9E7CF802246540400D786AC /* ChannelsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				F9DAFFE4222C6C390076C198 /* ChannelsTableViewCell.swift in Sources */,
 				F9EBF2DF2234091B0008BAA7 /* FirebaseStorageManager.swift in Sources */,
 				F9E2D65E222C48FF0078E652 /* ProfileTableViewCell.swift in Sources */,
+				F9E7CF812246540400D786AC /* ChannelsRepository.swift in Sources */,
 				F9CC582C223A7C16009490F8 /* R.generated.swift in Sources */,
 				F9E2D661222C553D0078E652 /* TimelineViewControllerCell.swift in Sources */,
 				F957BFBD2242E2D50095A97C /* CommentTableViewCell.swift in Sources */,

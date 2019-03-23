@@ -38,4 +38,6 @@ class UsersRepository: FirebaseArrayRepository<UserModel> {
             completion(model!)
         }
     }
+    
+    
 }

@@ -9,6 +9,10 @@
 import UIKit
 import IQKeyboardManagerSwift
 
+protocol PostDetailsDelegate {
+    func returnFromPost(post: Post)
+}
+
 class PostDetailsViewController: UIViewController {
     
     @IBOutlet weak var commentTextField: UITextField!
@@ -17,11 +21,12 @@ class PostDetailsViewController: UIViewController {
 
     private let timelineRepository = TimelineRepository()
     private var commentRepository: CommentsRepository!
-    
+
     private var comments: [Comment]{
         return commentRepository.comments
     }
     var post: Post!
+    var delegate: PostDetailsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +47,13 @@ class PostDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+        delegate?.returnFromPost(post: post)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
     
     //MARK:- selector methods
     @objc func keyboardWillShow(notification: Notification) {
@@ -63,9 +73,13 @@ class PostDetailsViewController: UIViewController {
         }
         commentTextField.text = ""
         let comment = Comment(sender: FirebaseUser.shared.uid!, text: commentText)
+        post.comments.append(comment.id)
         commentRepository.uploadComment(comment) {(error) in
             if let error = error{
                 print("Couldn't upload your comment, try Again! \n \(error.localizedDescription)")
+            }else{
+                self.timelineRepository.updatePost(self.post)
+                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             }
         }
     }

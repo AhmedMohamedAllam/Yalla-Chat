@@ -166,6 +166,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="commentLabel" destination="S1z-yF-62F" id="St2-Ut-Ced"/>
                 <outlet property="likeImageView" destination="SVP-31-HfL" id="EbU-Hz-XIS"/>
                 <outlet property="likeLabel" destination="Rxt-BO-UZR" id="37f-pN-XYg"/>
                 <outlet property="postDate" destination="N21-Yr-2XS" id="b65-dp-7P0"/>

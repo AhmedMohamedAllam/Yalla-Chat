@@ -14,7 +14,7 @@ class IndicatorLoading {
     static func showLoading(_ view: UIView) {
         view.isUserInteractionEnabled = false
         activityIndicator.style = .whiteLarge
-        activityIndicator.color = UIColor.blue
+        activityIndicator.color = UIColor.hasNewMessage
         activityIndicator.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()

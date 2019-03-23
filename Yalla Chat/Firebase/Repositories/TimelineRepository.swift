@@ -22,7 +22,7 @@ class TimelineRepository {
         
     }
     
-    func setupObserver(){
+    func setupObservers(){
         postListener = postReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")
@@ -81,4 +81,20 @@ class TimelineRepository {
         }
     }
     
+    func posts(for userId: String, completion: @escaping(_ posts: [Post]) -> Void){
+        postReference.whereField(Keys.Post.sender, isEqualTo: userId).getDocuments { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")
+                completion([])
+                return
+            }
+            var posts = [Post]()
+            for document in snapshot.documents{
+                if let post = Post(document: document){
+                    posts.append(post)
+                }
+            }
+            completion(posts)
+        }
+    }
 }
