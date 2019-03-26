@@ -388,9 +388,6 @@ extension ChatViewController: MessageInputBarDelegate {
         inputBar.inputTextView.text = ""
         inputBar.inputTextView.resignFirstResponder()
     }
-    
-    
-    
 }
 
 // MARK: - UIImagePickerControllerDelegate

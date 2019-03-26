@@ -58,11 +58,8 @@ class ContactsViewController: UIViewController {
     }
     
     private func addFriendToTable(user: UserModel) {
-        guard let index = myFriends.firstIndex(of: user)  else {
-            return
-        }
         DispatchQueue.main.async {
-            self.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            self.tableView.reloadData()
         }
     }
 }
@@ -96,8 +93,8 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
         } else {
             user = myFriends[indexPath.row]
         }
+//        navigationController?.popViewController(animated: true)
         delegate?.didSelect(user: user)
-        navigationController?.popViewController(animated: true)
     }
 }
 
