@@ -11,7 +11,7 @@ import ActionSheetPicker_3_0
 import Firebase
 
 class CompleteProfileViewController: UIViewController {
-
+    
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var genderTextField: UITextField!
@@ -20,7 +20,7 @@ class CompleteProfileViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var personalCheckmarkImageView: UIImageView!
     @IBOutlet weak var professionalCheckmarkImageView: UIImageView!
-
+    
     @IBOutlet weak var profileProgressBar: UIProgressView!
     
     private var userData: [String: Any] = [:]
@@ -58,7 +58,7 @@ class CompleteProfileViewController: UIViewController {
     }
     
     @IBAction func choosedPersonal(_ sender: Any) {
-       setPersonal()
+        setPersonal()
     }
     
     @IBAction func choosedProfessional(_ sender: Any) {
@@ -108,14 +108,19 @@ class CompleteProfileViewController: UIViewController {
     }
     
     func didFinishUpload(){
+        //save user type in userdefaults to check in preloadViewController
+        //if it is professional or not
+        FirebaseUser.shared.setUserType(userData[Keys.User.type] as! Int)
         //not edit profile
+        
         if editUser == nil{
             let home = R.storyboard.main.instantiateInitialViewController()
             present(home!, animated: true, completion: nil)
         }else{
+            Alert.showMessage(message: "Profile updated successfully, restart the App to refelct the changes!", theme: .success)
             navigationController?.popViewController(animated: true)
         }
-       
+        
     }
     
     private func completeUserData(){
@@ -151,7 +156,7 @@ class CompleteProfileViewController: UIViewController {
             return true
         }
         if !isProfessional && !isPersonal{
-             Alert.showMessage(message: "Choose Personal or Professional", theme: .warning)
+            Alert.showMessage(message: "Choose Personal or Professional", theme: .warning)
             return true
         }
         return false
@@ -181,12 +186,11 @@ class CompleteProfileViewController: UIViewController {
                 Alert.showMessage(message: "Couldn't upload picture, \(error!.localizedDescription), try again", theme: .error)
             }else{
                 self.userData[Keys.User.imageUrl] = imageUrl
-                Alert.showMessage(message: "Profile picture uploaded successfully", theme: .success)
                 self.uploadUserData(FirebaseUser.shared.uid!)
             }
         }
     }
-
+    
     private func loadUserDataForEdit(){
         guard let editUser = editUser else {
             return

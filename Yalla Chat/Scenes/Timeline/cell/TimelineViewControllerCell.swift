@@ -121,7 +121,7 @@ class TimelineViewControllerCell: UITableViewCell {
     }
     
     @IBAction func optionsPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "This post shoudn't be on Yalla Chat?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "This shoudn't be on Yalla Chat?", preferredStyle: .actionSheet)
         let reportAction = UIAlertAction(title: "Report", style: .destructive) { (action) in
             self.timelineRepository.reportPost(postId: self.post.id)
         }

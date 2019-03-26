@@ -20,12 +20,14 @@ struct Post {
     var comments: [String] = []
     var imageWidth: CGFloat = 0
     var imageHeight: CGFloat = 0
+    var isProfessional: Bool
     
-    init(sender: String, text: String) {
+    init(sender: String, text: String, isProfessional: Bool = false) {
         self.id = UUID().uuidString
         self.senderId = sender
         self.text = text
         self.creationDate = Date()
+        self.isProfessional = isProfessional
     }
     
     init?(document: DocumentSnapshot) {
@@ -48,6 +50,7 @@ struct Post {
         self.comments = data[Keys.Post.comments] as? [String] ?? []
         self.imageWidth = data[Keys.Post.imageWidth] as? CGFloat ?? 0
         self.imageHeight = data[Keys.Post.imageHeight] as? CGFloat ?? 0
+        self.isProfessional = data[Keys.Post.isProfessional] as? Bool ?? false
     }
     
 }
@@ -63,7 +66,8 @@ extension Post: DatabaseRepresentation {
             Keys.Post.likes: likes,
             Keys.Post.comments: comments,
             Keys.Post.imageWidth: imageWidth,
-            Keys.Post.imageHeight: imageHeight
+            Keys.Post.imageHeight: imageHeight,
+            Keys.Post.isProfessional: isProfessional
         ]
         
         if imageUrl != nil{

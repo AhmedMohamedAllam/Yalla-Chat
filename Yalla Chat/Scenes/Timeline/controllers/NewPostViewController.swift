@@ -25,11 +25,12 @@ class NewPostViewController: UIViewController {
     private var postReference: CollectionReference {
         return db.collection(Keys.posts)
     }
+    var isProfessional: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         storageManager.delegate = self
-        post = Post(sender: FirebaseUser.shared.uid!, text: textView.text)
+        post = Post(sender: FirebaseUser.shared.uid!, text: textView.text, isProfessional: isProfessional)
         setUpKeyboardNotification()
     }
     

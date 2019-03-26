@@ -17,9 +17,25 @@ class TimelineRepository {
     }
     var posts = [Post]()
     private var postListener: ListenerRegistration?
+    private let usersRepository = UsersRepository()
+    private var friends = [String]()
     
     func setupListner(){
-        postListener = postReference.addSnapshotListener { querySnapshot, error in
+        //load friends firs to filter fetched posts with those friends later
+        usersRepository.friends(of: FirebaseUser.shared.uid!) { (friends) in
+            self.friends = friends
+            self.addPostListner()
+        }
+        
+    }
+    
+    func removeListner(){
+        postListener?.remove()
+    }
+    
+    
+    private func addPostListner(){
+        self.postListener = self.postReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")
                 return
@@ -31,13 +47,12 @@ class TimelineRepository {
         }
     }
     
-    func removeListner(){
-        postListener?.remove()
-
+    private func isMyFriendPost(_ post: Post) -> Bool{
+        return friends.filter{ $0 == post.senderId }.count > 0
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        guard let post = Post(document: change.document) else {
+        guard let post = Post(document: change.document), isMyFriendPost(post), !post.isProfessional else {
             return
         }
         
@@ -79,8 +94,9 @@ class TimelineRepository {
         }
     }
     
-    func posts(for userId: String, completion: @escaping(_ posts: [Post]) -> Void){
-        postReference.whereField(Keys.Post.sender, isEqualTo: userId).getDocuments { (querySnapshot, error) in
+    
+    private func posts(whereField field: String, isEqualTo value: Any, completion: @escaping(_ posts: [Post]) -> Void){
+        postReference.whereField(field, isEqualTo: value).getDocuments { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")
                 completion([])
@@ -94,6 +110,14 @@ class TimelineRepository {
             }
             completion(posts)
         }
+    }
+    
+    func professionalPosts(completion: @escaping(_ posts: [Post]) -> Void) {
+        posts(whereField: Keys.Post.isProfessional, isEqualTo: true, completion: completion)
+    }
+    
+    func posts(for senderId: String, completion: @escaping(_ posts: [Post]) -> Void){
+        posts(whereField: Keys.Post.sender, isEqualTo: senderId, completion: completion)
     }
     
     func reportPost(postId id: String){

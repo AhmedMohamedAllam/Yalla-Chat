@@ -40,6 +40,7 @@ struct Keys {
         static let imageHeight = "imageHeight"
         static let likes = "likes"
         static let comments = "comments"
+        static let isProfessional = "isProfessional"
     }
     
     struct Comment {

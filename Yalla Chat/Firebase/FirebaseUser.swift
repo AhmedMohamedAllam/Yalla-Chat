@@ -38,6 +38,7 @@ class FirebaseUser {
         return Auth.auth().currentUser
     }
     
+    
     private var isAuthenticated: Bool {
         return currentUser != nil
     }
@@ -66,6 +67,7 @@ class FirebaseUser {
             completion(verificationID, nil)
         }
     }
+    
     
     //MARK:- Private methods
     func signOut(viewController: UIViewController) {
@@ -119,5 +121,12 @@ class FirebaseUser {
         return UserDefaults.standard.value(forKey: "authVerificationId") as? String
     }
     
+    func setUserType(_ type: Int){
+        UserDefaults.standard.set(type, forKey: "userType")
+    }
+    
+    func userType() -> Int{
+        return UserDefaults.standard.integer(forKey: "userType")
+    }
     
 }

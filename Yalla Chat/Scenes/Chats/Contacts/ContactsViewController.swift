@@ -62,6 +62,13 @@ class ContactsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    private func openProfile(with userId: String){
+        if let profileVC = R.storyboard.profile.profileViewController(){
+            profileVC.anotherUserProfileId = userId
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
 }
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
@@ -90,11 +97,11 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
         if  (resultSearchController.isActive) {
             user = filteredTableData[indexPath.row]
             resultSearchController.isActive = false
+            openProfile(with: user.id)
         } else {
             user = myFriends[indexPath.row]
+            delegate?.didSelect(user: user)
         }
-//        navigationController?.popViewController(animated: true)
-        delegate?.didSelect(user: user)
     }
 }
 

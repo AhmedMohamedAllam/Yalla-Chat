@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uXz-Jq-R1U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uXz-Jq-R1U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,33 +22,33 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactsTableViewCell" rowHeight="74" id="Nkl-Ef-t2j" customClass="ContactsTableViewCell" customModule="Yalla_Chat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="74"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactsTableViewCell" rowHeight="88" id="Nkl-Ef-t2j" customClass="ContactsTableViewCell" customModule="Yalla_Chat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nkl-Ef-t2j" id="mCF-NN-UiR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-TO-fXf">
-                                                    <rect key="frame" x="8" y="8" width="54" height="54"/>
+                                                    <rect key="frame" x="8" y="8.5" width="72" height="72"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="FZ1-TO-fXf" secondAttribute="height" multiplier="1:1" id="XSc-Uw-2j0"/>
-                                                        <constraint firstAttribute="width" constant="50" id="a7W-uu-b7v"/>
+                                                        <constraint firstAttribute="width" constant="60" id="a7W-uu-b7v"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                                                            <real key="value" value="25"/>
+                                                            <real key="value" value="30"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsw-D2-2EG">
-                                                    <rect key="frame" x="74" y="16" width="70" height="17"/>
+                                                    <rect key="frame" x="92" y="16.5" width="70" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.20392156859999999" green="0.44705882349999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't need bio, I'm your one" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbJ-Cp-Wrs">
-                                                    <rect key="frame" x="74" y="37.5" width="155.5" height="12"/>
+                                                    <rect key="frame" x="92" y="52.5" width="155.5" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -115,29 +115,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="qcK-Dg-820">
-                                            <rect key="frame" x="8" y="8" width="54" height="54"/>
+                                            <rect key="frame" x="8" y="8.5" width="72" height="72"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="YCc-Ec-Eky"/>
+                                                <constraint firstAttribute="width" constant="60" id="YCc-Ec-Eky"/>
                                                 <constraint firstAttribute="width" secondItem="qcK-Dg-820" secondAttribute="height" multiplier="1:1" id="gQC-B1-QLF"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="circlePaddingsView" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="circlePaddingsView" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                                    <real key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogQ-z4-2Dg">
-                                            <rect key="frame" x="74" y="16" width="70.5" height="18"/>
+                                            <rect key="frame" x="92" y="16.5" width="70.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.20392156859999999" green="0.44705882349999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How are you? ❤️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfq-1k-M6s">
-                                            <rect key="frame" x="74" y="36" width="90" height="13.5"/>
+                                            <rect key="frame" x="92" y="51" width="90" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNK-Ts-DeI">
-                                            <rect key="frame" x="321" y="29" width="12" height="12"/>
+                                            <rect key="frame" x="321" y="38.5" width="12" height="12"/>
                                             <color key="backgroundColor" red="0.1221123964880822" green="0.5391695205479452" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="12" id="9ac-Uk-cCD"/>
@@ -205,7 +208,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chat" width="60" height="60"/>
-        <image name="user" width="54" height="54"/>
+        <image name="chat" width="30" height="30"/>
+        <image name="user" width="72" height="72"/>
     </resources>
 </document>

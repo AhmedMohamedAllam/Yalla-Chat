@@ -22,6 +22,7 @@ class ChannelsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         selectionStyle = .none
+        profilePic.layer.cornerRadius = profilePic.frame.width / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

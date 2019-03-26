@@ -35,6 +35,15 @@ class UsersRepository: FirebaseArrayRepository<UserModel> {
     }
     
     
+    func friends(of userId: String, completion: @escaping (_ friends: [String]) -> Void){
+        ref.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+            let dict = snapshot.value as? [String: Any]
+            let key = snapshot.key
+            let model = UserModel(dictionary: dict, key: key)
+            completion(model?.friends ?? [])
+        }
+    }
+    
     
     func addToFriends(userId id: String){
         ref.child(id).child(Keys.User.friends).child(FirebaseUser.shared.uid!).setValue(true)
@@ -52,4 +61,5 @@ class UsersRepository: FirebaseArrayRepository<UserModel> {
             $0.fullName.lowercased().contains(name)
         }
     }
+    
 }
