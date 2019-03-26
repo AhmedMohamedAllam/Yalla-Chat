@@ -18,7 +18,7 @@ struct UserModel: FirebaseModel {
     var bio: String?
     var gender: String!
     var type: UserType!
-    var channels: [String]?
+    var friends: [String] = []
     
     private var userType: Int!
     
@@ -46,8 +46,8 @@ struct UserModel: FirebaseModel {
         self.email = dict[Keys.User.email] as? String
         self.bio = dict[Keys.User.bio] as? String
         self.gender = dict[Keys.User.gender] as? String
-        if let channelsDict = dict[Keys.User.channels] as? [String: String]{
-            self.channels = Array(channelsDict.values)
+        if let friendsDict = dict[Keys.User.friends] as? [String: Bool]{
+            self.friends = Array(friendsDict.keys)
         }
     }
     
@@ -57,4 +57,17 @@ enum UserType: Int{
     case professional = 0
     case personal
     case both
+}
+
+extension UserModel: Comparable{
+    
+    static func < (lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.fullName < rhs.fullName
+    }
+    
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    
 }

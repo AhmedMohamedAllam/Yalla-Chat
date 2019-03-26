@@ -12,8 +12,11 @@ import FirebaseFirestore
 class ChannelsRepository {
     
     private let db = Firestore.firestore()
+    var channelDataDocument: DocumentReference{
+        return db.collection(Keys.chats).document(Keys.data)
+    }
     private var channelReference: CollectionReference {
-        return db.collection(FirebaseUser.shared.uid!)
+        return channelDataDocument.collection(FirebaseUser.shared.uid!)
     }
     
     var channels = [Channel]()
@@ -21,10 +24,10 @@ class ChannelsRepository {
 
    
     deinit {
-        channelListener?.remove()
+        removeListner()
     }
     
-    func setupNotificationObservers() {
+    func setupListner() {
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -37,22 +40,22 @@ class ChannelsRepository {
         }
     }
     
+    func removeListner(){
+        channelListener?.remove()
+    }
+    
     
     // MARK: - Helpers
-    func createChannel(to user: UserModel, completion: @escaping (_ channel: Channel?) -> Void) {
-        guard let id = user.id else {
-            completion(nil)
-            return
-        }
+    func createChannel(with userId: String, completion: @escaping (_ channel: Channel?) -> Void) {
         
-        let channelId = merge(currentId:FirebaseUser.shared.uid!, with: id)
+        let channelId = merge(currentId:FirebaseUser.shared.uid!, with: userId)
         let existChannel = channels.filter{$0.id == channelId}.first
         guard existChannel == nil else {
             completion(existChannel)
             return
         }
         
-        let createdChannel = Channel(id: channelId, sender: FirebaseUser.shared.uid!, receiver: user.id)
+        let createdChannel = Channel(id: channelId, sender: FirebaseUser.shared.uid!, receiver: userId)
         channelReference.document(channelId).setData(createdChannel.representation) { error in
             if let e = error {
                 Alert.showMessage(message: "Error starting chat: \(e.localizedDescription)", theme: .error)
@@ -61,7 +64,7 @@ class ChannelsRepository {
             }
         }
         
-        let receiverChannelReference = db.collection(id)
+        let receiverChannelReference = channelDataDocument.collection(userId)
         receiverChannelReference.document(channelId).setData(createdChannel.representation) { error in
             if let e = error {
                 Alert.showMessage(message: "Error starting chat: \(e.localizedDescription)", theme: .error)

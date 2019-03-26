@@ -34,25 +34,22 @@ class PostDetailsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TimelineCell", bundle: nil), forCellReuseIdentifier: "PostDetailsViewControllerCell")
         commentRepository = CommentsRepository(postId: post.id)
-        setupCommentObservers()
-        setUpKeyboardNotification()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         IQKeyboardManager.shared.enableAutoToolbar = false
         tabBarController?.tabBar.isHidden = true
+        setupCommentObservers()
+        setUpKeyboardNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
         delegate?.returnFromPost(post: post)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+         NotificationCenter.default.removeObserver(self)
     }
     
     //MARK:- selector methods
@@ -78,8 +75,9 @@ class PostDetailsViewController: UIViewController {
             if let error = error{
                 print("Couldn't upload your comment, try Again! \n \(error.localizedDescription)")
             }else{
-                self.timelineRepository.updatePost(self.post)
-                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                self.timelineRepository.updatePost(self.post){
+                    self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                }
             }
         }
     }
@@ -204,18 +202,28 @@ extension PostDetailsViewController: UITableViewDelegate, UITableViewDataSource{
 
 
 extension PostDetailsViewController: TimeLineCellDelegate{
+    func didTapProfile(userId id: String) {
+        if let profileVC = R.storyboard.profile.profileViewController(){
+            profileVC.anotherUserProfileId = id
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    
     func didTapLike(on post: Post) {
-        var currentPost = post
         let myUid = FirebaseUser.shared.uid!
-        let isLiked = post.likes.filter{$0 == myUid}.count > 0
+        let isLiked = self.post.likes.filter{$0 == myUid}.count > 0
         if isLiked{
-            currentPost.likes.removeAll { (userId) -> Bool in
+            self.post.likes.removeAll { (userId) -> Bool in
                 userId == myUid
             }
         }else{
-            currentPost.likes.append(myUid)
+            self.post.likes.append(myUid)
         }
-        timelineRepository.updatePost(currentPost)
+        timelineRepository.updatePost(self.post){
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
+        }
     }
 
     func didTapComment(on post: Post) {}

@@ -51,7 +51,7 @@ final class ChatViewController: MessagesViewController {
     private var senderLastMessageRef: DocumentReference!
     private var receiverLastMessageRef: DocumentReference!
     private let usersRepository = UsersRepository()
-    
+    private let channelRepository = ChannelsRepository()
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
@@ -75,8 +75,8 @@ final class ChatViewController: MessagesViewController {
         usersRepository.user(with: channel.destinationUid) { (user) in
             self.title = user.fullName
         }
-        senderLastMessageRef = db.collection(FirebaseUser.shared.uid!).document(channel.id)
-        receiverLastMessageRef = db.collection(channel.destinationUid).document(channel.id)
+        senderLastMessageRef = channelRepository.channelDataDocument.collection(FirebaseUser.shared.uid!).document(channel.id)
+        receiverLastMessageRef = channelRepository.channelDataDocument.collection(channel.destinationUid).document(channel.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,8 +96,6 @@ final class ChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.messageKitStyle()
         reference = db.collection([Keys.Chat.channels, channel.id, "thread"].joined(separator: "/"))
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {

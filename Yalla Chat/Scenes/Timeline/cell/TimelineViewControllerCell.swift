@@ -11,6 +11,7 @@ import Kingfisher
 protocol TimeLineCellDelegate{
     func didTapLike(on post: Post)
     func didTapComment(on post: Post)
+    func didTapProfile(userId id: String)
 }
 
 class TimelineViewControllerCell: UITableViewCell {
@@ -23,7 +24,9 @@ class TimelineViewControllerCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var likeImageView: UIImageView!
+    
     private let users = UsersRepository()
+    private let timelineRepository = TimelineRepository()
     private var post: Post!
     var delegate: TimeLineCellDelegate?
     
@@ -113,4 +116,20 @@ class TimelineViewControllerCell: UITableViewCell {
         delegate?.didTapComment(on: post)
     }
     
+    @IBAction func profileAreaPressed(_ sender: Any) {
+        delegate?.didTapProfile(userId: post.senderId)
+    }
+    
+    @IBAction func optionsPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "", message: "This post shoudn't be on Yalla Chat?", preferredStyle: .actionSheet)
+        let reportAction = UIAlertAction(title: "Report", style: .destructive) { (action) in
+            self.timelineRepository.reportPost(postId: self.post.id)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
+        alert.addAction(reportAction)
+        alert.addAction(cancelAction)
+        if let vc = delegate as? UIViewController{
+            vc.present(alert, animated: true, completion: nil)
+        }
+    }
 }

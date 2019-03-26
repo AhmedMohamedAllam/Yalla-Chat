@@ -18,12 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="ttS-3Q-Ihs">
-                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES" textContentType="name"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dpc-Ll-vpq">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactsTableViewCell" rowHeight="74" id="Nkl-Ef-t2j" customClass="ContactsTableViewCell" customModule="Yalla_Chat" customModuleProvider="target">
@@ -80,18 +76,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dpc-Ll-vpq" firstAttribute="top" secondItem="sMG-Bm-Ppp" secondAttribute="top" id="8BC-8E-9ik"/>
                             <constraint firstItem="dpc-Ll-vpq" firstAttribute="leading" secondItem="sMG-Bm-Ppp" secondAttribute="leading" id="A88-BZ-YkJ"/>
-                            <constraint firstItem="dpc-Ll-vpq" firstAttribute="top" secondItem="ttS-3Q-Ihs" secondAttribute="bottom" id="K3J-3S-mDF"/>
-                            <constraint firstItem="ttS-3Q-Ihs" firstAttribute="leading" secondItem="sMG-Bm-Ppp" secondAttribute="leading" id="UDi-5N-pcy"/>
                             <constraint firstItem="sMG-Bm-Ppp" firstAttribute="bottom" secondItem="dpc-Ll-vpq" secondAttribute="bottom" id="XdG-Po-fgt"/>
                             <constraint firstAttribute="trailing" secondItem="dpc-Ll-vpq" secondAttribute="trailing" id="Zbz-QL-vl4"/>
-                            <constraint firstItem="ttS-3Q-Ihs" firstAttribute="trailing" secondItem="sMG-Bm-Ppp" secondAttribute="trailing" id="bzw-1y-Tgu"/>
-                            <constraint firstItem="ttS-3Q-Ihs" firstAttribute="top" secondItem="sMG-Bm-Ppp" secondAttribute="top" id="hVb-x0-OgA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sMG-Bm-Ppp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="CYv-Xt-LX7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="oub-Y6-1QP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="oub-Y6-1QP">
+                            <connections>
+                                <action selector="searchPressed:" destination="5AN-72-EnE" id="yCk-tE-R1I"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dpc-Ll-vpq" id="sIi-C8-j0k"/>

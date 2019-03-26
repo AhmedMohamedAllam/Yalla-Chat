@@ -10,12 +10,7 @@ import Foundation
 
 class UsersRepository: FirebaseArrayRepository<UserModel> {
     
-    
     func personalUsers() -> [UserModel]?{
-        models.forEach {
-            print($0)
-        }
-        
         return models.filter{
             $0.type == UserType.personal || $0.type == UserType.both
             }.filter{
@@ -40,4 +35,21 @@ class UsersRepository: FirebaseArrayRepository<UserModel> {
     }
     
     
+    
+    func addToFriends(userId id: String){
+        ref.child(id).child(Keys.User.friends).child(FirebaseUser.shared.uid!).setValue(true)
+        ref.child(FirebaseUser.shared.uid!).child(Keys.User.friends).child(id).setValue(true)
+    }
+    
+    func removeFromFriends(userId id: String){
+        ref.child(id).child(Keys.User.friends).child(FirebaseUser.shared.uid!).removeValue()
+        ref.child(FirebaseUser.shared.uid!).child(Keys.User.friends).child(id).removeValue()
+    }
+    
+    
+    func search(text name: String) -> [UserModel]?{
+        return models.filter{
+            $0.fullName.lowercased().contains(name)
+        }
+    }
 }

@@ -46,7 +46,7 @@ class VerificationCodeViewController: UIViewController {
                 return
             }
             if authResult!.additionalUserInfo!.isNewUser{
-                let signUp = R.storyboard.signIn.signUpViewController()
+                let signUp = R.storyboard.signIn.completeProfileViewController()
                 self.navigationController?.pushViewController(signUp!, animated: true)
             }else{
                 let home = R.storyboard.main.instantiateInitialViewController()

@@ -14,7 +14,7 @@ class FirebaseDatabaseManager {
     
     func uploadModel(_ model: [String: Any],at path: String, completion: @escaping (_ error: Error?) -> Void){
         let child = ref.child(path)
-        child.setValue(model) { (error, reference) in
+        child.updateChildValues(model){ (error, reference) in
             completion(error)
         }
     }

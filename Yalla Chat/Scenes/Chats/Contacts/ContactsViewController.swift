@@ -16,40 +16,101 @@ class ContactsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     let usersRepo = UsersRepository()
-    var users: [UserModel] = []
-    var delegate: ContactsViewControllerDelegate?
+    var myFriends: [UserModel] = []
+    var filteredTableData: [UserModel] = []
     
+    var delegate: ContactsViewControllerDelegate?
+    var resultSearchController = UISearchController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        users = usersRepo.personalUsers() ?? []
-        IndicatorLoading.showLoading(view)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveUsers), name: NSNotification.Name.receiveUser, object: nil)
+        loadFriends()
+        resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.searchBar.delegate = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            return controller
+        })()
     }
     
-    @objc func receiveUsers(){
-        IndicatorLoading.hideLoading(view)
-        users = usersRepo.personalUsers() ?? []
-        tableView.reloadData()
+    @IBAction func searchPressed(_ sender: Any) {
+        let isHidden = tableView.tableHeaderView == nil
+        if isHidden{
+            tableView.tableHeaderView = resultSearchController.searchBar
+        }else{
+            tableView.tableHeaderView = nil
+        }
+    }
+    
+    private func loadFriends(){
+        usersRepo.user(with: FirebaseUser.shared.uid!) { (myData) in
+            myData.friends.forEach{ [weak self] in
+                self?.usersRepo.user(with: $0, completion: { (myFriend) in
+                    self?.myFriends.append(myFriend)
+                    self?.addFriendToTable(user: myFriend)
+                })
+            }
+        }
+    }
+    
+    private func addFriendToTable(user: UserModel) {
+        guard let index = myFriends.firstIndex(of: user)  else {
+            return
+        }
+        DispatchQueue.main.async {
+            self.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        }
     }
 }
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        if  (resultSearchController.isActive) {
+            return filteredTableData.count
+        } else {
+            return myFriends.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath) as! ContactsTableViewCell
-        cell.updadteCell(with: users[indexPath.row])
+        var user: UserModel!
+        if  (resultSearchController.isActive) {
+            user = filteredTableData[indexPath.row]
+        } else {
+            user = myFriends[indexPath.row]
+        }
+        cell.updadteCell(with: user)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = users[indexPath.row]
-        navigationController?.popViewController(animated: true)
+        var user: UserModel!
+        if  (resultSearchController.isActive) {
+            user = filteredTableData[indexPath.row]
+            resultSearchController.isActive = false
+        } else {
+            user = myFriends[indexPath.row]
+        }
         delegate?.didSelect(user: user)
+        navigationController?.popViewController(animated: true)
     }
 }
 
+extension ContactsViewController: UISearchBarDelegate, UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredTableData.removeAll(keepingCapacity: false)
+        let searchText = searchController.searchBar.text!.lowercased()
+        let searchResult = usersRepo.search(text: searchText) ?? []
+        filteredTableData = searchResult
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        tableView.tableHeaderView = nil
+    }
+}

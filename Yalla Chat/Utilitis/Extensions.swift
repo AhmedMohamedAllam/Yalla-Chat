@@ -99,6 +99,7 @@ extension UIViewController{
 }
 
 extension UINavigationController{
+    
     func makeTransparent() {
         navigationBar.isHidden = false
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -112,10 +113,7 @@ extension UINavigationController{
         navigationBar.prefersLargeTitles = true
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.primary]
         navigationBar.largeTitleTextAttributes = navigationBar.titleTextAttributes
-        
         toolbar.tintColor = .primary
-        
-        
     }
     
     

@@ -1,5 +1,5 @@
 //
-//  SignUpViewController.swift
+//  CompleteProfileViewController.swift
 //  Yalla Chat
 //
 //  Created by Ahmed Allam on 3/6/19.
@@ -28,6 +28,7 @@ class CompleteProfileViewController: UIViewController {
     private let storageManager = FirebaseStorageManager()
     private let databaseManager = FirebaseDatabaseManager()
     
+    var editUser: UserModel?
     
     private var isPersonal = false
     private var isProfessional = false
@@ -37,9 +38,18 @@ class CompleteProfileViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.makeTransparent()
         storageManager.delegate = self
+        loadUserDataForEdit()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
     @IBAction func changePhoto(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -60,7 +70,6 @@ class CompleteProfileViewController: UIViewController {
         if !isEmpty{
             completeUserData()
             uploadUser()
-            
         }
     }
     
@@ -81,7 +90,7 @@ class CompleteProfileViewController: UIViewController {
                 Alert.showMessage(message: "Error saving data!, \(error!.localizedDescription)", theme: .error)
                 return
             }
-            self.goToHome()
+            self.didFinishUpload()
         }
     }
     
@@ -98,9 +107,15 @@ class CompleteProfileViewController: UIViewController {
         
     }
     
-    func goToHome(){
-        let home = R.storyboard.main.instantiateInitialViewController()
-        present(home!, animated: true, completion: nil)
+    func didFinishUpload(){
+        //not edit profile
+        if editUser == nil{
+            let home = R.storyboard.main.instantiateInitialViewController()
+            present(home!, animated: true, completion: nil)
+        }else{
+            navigationController?.popViewController(animated: true)
+        }
+       
     }
     
     private func completeUserData(){
@@ -124,6 +139,7 @@ class CompleteProfileViewController: UIViewController {
             Alert.showMessage(message: "Choose Personal or Professional", theme: .warning)
         }
     }
+    
     
     private func checkEmptyState() -> Bool{
         if fullNameTextField.isEmpty(){
@@ -153,7 +169,7 @@ class CompleteProfileViewController: UIViewController {
     }
     
     private func uploadPicture(){
-        guard choosedImage, let image = profileImageView.image else {
+        guard let image = profileImageView.image else {
             return
         }
         self.profileProgressBar.isHidden = false
@@ -171,8 +187,32 @@ class CompleteProfileViewController: UIViewController {
         }
     }
 
+    private func loadUserDataForEdit(){
+        guard let editUser = editUser else {
+            return
+        }
+        if let image = editUser.imageUrl{
+            profileImageView.setImage(with: image)
+            choosedImage = true
+        }
+        fullNameTextField.text = editUser.fullName
+        bioTextField.text = editUser.bio
+        emailTextField.text = editUser.email
+        genderTextField.text = editUser.gender
+        loadUserType(type: editUser.type)
+    }
     
-    
+    private func loadUserType(type: UserType){
+        switch type {
+        case .both:
+            setProfessional()
+            setPersonal()
+        case .personal:
+            setPersonal()
+        case .professional:
+            setProfessional()
+        }
+    }
 }
 
 

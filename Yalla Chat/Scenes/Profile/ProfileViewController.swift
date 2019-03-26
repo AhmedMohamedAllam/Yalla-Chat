@@ -16,8 +16,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var numberOfFriendsLabel: UILabel!
     @IBOutlet weak var userHeaderView: UIView!
     @IBOutlet weak var sendMessagesView: UIView!
- 
-
+    @IBOutlet weak var addFriendButton: UIButton!
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    
     private let userRepository = UsersRepository()
     private let channelRepository = ChannelsRepository()
     private let timelineRepository = TimelineRepository()
@@ -41,19 +43,26 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TimelineCell", bundle: nil), forCellReuseIdentifier: "TimelineViewControllerCell")
-        loadUserData()
         updateUIIfMyProfile()
         fetchPosts()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadUserData()
+    }
+    
     
     private func updateUIIfMyProfile(){
-       sendMessagesView.isHidden = (currentProfileUid == myUid)
+        let isMyProfile = currentProfileUid == myUid
+        sendMessagesView.isHidden = isMyProfile
+        editButton.isEnabled = isMyProfile
     }
     
     private func fetchPosts(){
         IndicatorLoading.showLoading(tableView)
-        timelineRepository.posts(for: currentProfileUid) { [unowned self] (posts) in
+        timelineRepository.posts(for: currentProfileUid) { [weak self] (posts) in
+            guard let self = self else {return}
             DispatchQueue.main.async {
                 IndicatorLoading.hideLoading(self.tableView)
                 self.posts = posts
@@ -66,6 +75,7 @@ class ProfileViewController: UIViewController {
         userRepository.user(with: currentProfileUid) {[unowned self] (userModel) in
             DispatchQueue.main.async {
                 IndicatorLoading.hideLoading(self.userHeaderView)
+                self.user = userModel
                 self.updateUI(with: userModel)
             }
         }
@@ -79,6 +89,21 @@ class ProfileViewController: UIViewController {
         if let bioText = user.bio{
             bioLabel.text = bioText
         }
+        updateAddFriends(friends: user.friends)
+    }
+    
+    private func updateAddFriends(friends: [String]){
+        numberOfFriendsLabel.text = "Friends (\(friends.count))"
+        guard currentProfileUid != myUid else {
+            return
+        }
+        let isMyFriend = friends.filter{$0 == myUid}.count > 0
+        if isMyFriend{
+            addFriendButton.setTitle("  Remove Friend  ", for: .normal)
+        }else{
+            addFriendButton.setTitle("  Add to friends  ", for: .normal)
+        }
+        
     }
     
     private func startChat(for channel: Channel?){
@@ -91,16 +116,36 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func sendMessage(_ sender: Any) {
-        guard let profileUser = user else {
-            return
-        }
-        channelRepository.createChannel(to: profileUser) { [weak self] (channel) in
+        channelRepository.createChannel(with: currentProfileUid) { [weak self] (channel) in
             self?.startChat(for: channel)
         }
     }
     
+    
+    @IBAction func editProfile(_ sender: Any) {
+        if let signUpVC = R.storyboard.signIn.completeProfileViewController(), let editUser = user{
+            signUpVC.editUser = editUser
+            navigationController?.pushViewController(signUpVC, animated: true)
+        }
+    }
+    
+    
+    
     @IBAction func addToFriends(_ sender: Any) {
-        
+        guard let currentUser = user else{
+            return
+        }
+        let isMyFriend = currentUser.friends.filter{$0 == myUid}.count > 0
+        if isMyFriend{
+            userRepository.removeFromFriends(userId: currentProfileUid)
+            if let index = user!.friends.firstIndex(of: myUid){
+                user!.friends.remove(at: index)
+            }
+        }else{
+            userRepository.addToFriends(userId: currentProfileUid)
+            user!.friends.append(myUid)
+        }
+        updateAddFriends(friends: user!.friends)
     }
     
     private func heightForImageSize(_ size : CGSize) -> CGFloat? {
@@ -147,6 +192,24 @@ class ProfileViewController: UIViewController {
         return rectangleHeight
     }
     
+    private func openPostDetails(with post: Post) {
+        if let postDetails = R.storyboard.timeLine.postDetailsViewController(){
+            postDetails.post = post
+            postDetails.delegate = self
+            navigationController?.pushViewController(postDetails, animated: true)
+        }
+    }
+    
+    private func reloadRow(with post: Post){
+        if let index = posts.firstIndex(of: post){
+            posts[index] = post
+            reloadRow(at: index)
+        }
+    }
+    
+    private func reloadRow(at index: Int){
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
@@ -168,10 +231,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
         cell.updateCell(post: post)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPost = posts[indexPath.row]
+        openPostDetails(with: selectedPost)
+    }
 }
 
 
 extension ProfileViewController: TimeLineCellDelegate{
+    func didTapProfile(userId id: String) {
+        if let profileVC = R.storyboard.profile.profileViewController(){
+            profileVC.anotherUserProfileId = id
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    
     func didTapLike(on post: Post) {
         var currentPost = post
         let myUid = FirebaseUser.shared.uid!
@@ -183,10 +258,18 @@ extension ProfileViewController: TimeLineCellDelegate{
         }else{
             currentPost.likes.append(myUid)
         }
-        timelineRepository.updatePost(currentPost)
+        timelineRepository.updatePost(currentPost){
+            self.reloadRow(with: currentPost)
+        }
     }
     
     func didTapComment(on post: Post) {
-        
+        openPostDetails(with: post)
+    }
+}
+
+extension ProfileViewController: PostDetailsDelegate{
+    func returnFromPost(post: Post) {
+        reloadRow(with: post)
     }
 }

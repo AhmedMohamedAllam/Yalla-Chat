@@ -13,12 +13,12 @@
         <!--Profile-->
         <scene sceneID="Mhy-e9-tT8">
             <objects>
-                <viewController storyboardIdentifier="YourProfileViewController" id="eRD-Uc-glj" customClass="ProfileViewController" customModule="Yalla_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="eRD-Uc-glj" customClass="ProfileViewController" customModule="Yalla_Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sun-pb-lmp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qFa-54-iLY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qFa-54-iLY">
                                 <rect key="frame" x="0.0" y="64" width="375" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="8Gt-Qr-8gA" userLabel="Header">
@@ -173,11 +173,17 @@
                         <viewLayoutGuide key="safeArea" id="3Uh-S8-VQl"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="lxX-sT-ktI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MP8-tE-a7a"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MP8-tE-a7a">
+                            <connections>
+                                <action selector="editProfile:" destination="eRD-Uc-glj" id="HnM-tA-a49"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addFriendButton" destination="4ue-h6-bir" id="YjD-7p-MfO"/>
                         <outlet property="bioLabel" destination="EXD-Yo-p2m" id="Qwe-he-TyI"/>
+                        <outlet property="editButton" destination="MP8-tE-a7a" id="R4V-ad-yau"/>
                         <outlet property="numberOfFriendsLabel" destination="Pea-eU-XGz" id="FgK-UM-ezM"/>
                         <outlet property="profilePic" destination="fb8-XZ-Csa" id="EfA-po-ACU"/>
                         <outlet property="sendMessagesView" destination="06s-k8-fni" id="or7-LV-uxQ"/>

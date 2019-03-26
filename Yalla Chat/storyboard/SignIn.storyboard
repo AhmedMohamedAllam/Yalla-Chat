@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="1452" y="-11.244377811094454"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Complete Profile View Controller-->
         <scene sceneID="KiA-61-GvM">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="9Hf-O9-5u1" customClass="SignUpViewController" customModule="Yalla_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompleteProfileViewController" id="9Hf-O9-5u1" customClass="CompleteProfileViewController" customModule="Yalla_Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Qu-Ot-5AE" customClass="GradientView" customModule="Yalla_Chat" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -495,7 +495,7 @@
         <image name="Mask Group 6" width="375" height="667"/>
         <image name="Mask Group 7" width="375" height="900"/>
         <image name="app_icon" width="120" height="100"/>
-        <image name="camera" width="20" height="20"/>
+        <image name="camera" width="28" height="23"/>
         <image name="suitcase" width="44" height="39"/>
         <image name="tourist" width="36" height="47"/>
         <image name="user" width="54" height="54"/>

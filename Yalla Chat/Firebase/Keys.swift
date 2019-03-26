@@ -12,9 +12,11 @@ struct Keys {
     static let users = "users"
     static let posts = "posts"
     static let comments = "comments"
+    static let chats = "chats"
     static let data = "data"
     static let profilePictures = "profilePictures"
     static let postImages = "postImages"
+    static let reportedPosts = "reportedPosts"
 
     struct User {
         static let fullName = "fullName"
@@ -24,7 +26,7 @@ struct Keys {
         static let bio = "bio"
         static let gender = "gender"
         static let type = "type"
-        static let channels = "channels"
+        static let friends = "friends"
         static let joinDate = "joinDate"
 
     }

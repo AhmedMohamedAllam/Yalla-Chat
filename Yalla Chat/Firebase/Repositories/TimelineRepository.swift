@@ -18,11 +18,7 @@ class TimelineRepository {
     var posts = [Post]()
     private var postListener: ListenerRegistration?
     
-    init() {
-        
-    }
-    
-    func setupObservers(){
+    func setupListner(){
         postListener = postReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for timeline updates: \(error?.localizedDescription ?? "No error")")
@@ -35,8 +31,9 @@ class TimelineRepository {
         }
     }
     
-    deinit {
+    func removeListner(){
         postListener?.remove()
+
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
@@ -71,8 +68,9 @@ class TimelineRepository {
         }
     }
 
-    func updatePost(_ post: Post){
+    func updatePost(_ post: Post, completion: @escaping () -> Void){
         postReference.document(post.id).updateData(post.representation) { (error) in
+            completion()
             if let error = error{
                 print("Couldn't upload your post, try Again! \n \(error.localizedDescription)")
             }else{
@@ -96,5 +94,9 @@ class TimelineRepository {
             }
             completion(posts)
         }
+    }
+    
+    func reportPost(postId id: String){
+        db.collection(Keys.reportedPosts).document(id).setData(["reason": "Irrelevant content"])
     }
 }

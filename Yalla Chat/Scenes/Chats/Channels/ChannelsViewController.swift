@@ -56,12 +56,16 @@ class ChannelsViewController: UITableViewController {
         title = "Messages"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         toolbarLabel.text = AppSettings.displayName
-        channelRepository.setupNotificationObservers()
-        setupChannelObservers()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        channelRepository.setupListner()
+        setupChannelObservers()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        channelRepository.removeListner()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -72,7 +76,7 @@ class ChannelsViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    private func didSelect(channel: Channel){
+    private func open(channel: Channel){
         let vc = ChatViewController(user: currentUser, channel: channel)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -94,7 +98,7 @@ class ChannelsViewController: UITableViewController {
     
     // MARK: - Helpers
     private func createChannel(to user: UserModel, completion: @escaping (_ channel: Channel?) -> Void) {
-        channelRepository.createChannel(to: user, completion: completion)
+        channelRepository.createChannel(with: user.id, completion: completion)
     }
     
     //merge current id with destinbation user id and make unique key with the large value at first then the small one
@@ -149,7 +153,7 @@ extension ChannelsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = channels[indexPath.row]
-       didSelect(channel: channel)
+       open(channel: channel)
     }
     
 }
@@ -159,6 +163,8 @@ extension ChannelsViewController: ContactsViewControllerDelegate{
         createChannel(to: user){ channel in
             if channel == nil{
                 print("channel is nil")
+            }else{
+                self.open(channel: channel!)
             }
         }
     }

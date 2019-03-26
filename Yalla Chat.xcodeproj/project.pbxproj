@@ -46,7 +46,7 @@
 		F9CE4F4522304E3B0048A96A /* IndicatorLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4422304E3B0048A96A /* IndicatorLoading.swift */; };
 		F9CE4F4722304E460048A96A /* ValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4622304E460048A96A /* ValidationHelper.swift */; };
 		F9CE4F4B2230522A0048A96A /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */; };
-		F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */; };
+		F9CE4F5022305B6B0048A96A /* CompleteProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F4F22305B6B0048A96A /* CompleteProfileViewController.swift */; };
 		F9DAFFE4222C6C390076C198 /* ChannelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE3222C6C390076C198 /* ChannelsTableViewCell.swift */; };
 		F9DAFFE6222C6C770076C198 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */; };
 		F9DAFFE8222C6C8E0076C198 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DAFFE7222C6C8E0076C198 /* ContactsViewController.swift */; };
@@ -113,7 +113,7 @@
 		F9CE4F4422304E3B0048A96A /* IndicatorLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorLoading.swift; sourceTree = "<group>"; };
 		F9CE4F4622304E460048A96A /* ValidationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
 		F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
-		F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F9CE4F4F22305B6B0048A96A /* CompleteProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteProfileViewController.swift; sourceTree = "<group>"; };
 		F9DAFFE3222C6C390076C198 /* ChannelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsTableViewCell.swift; sourceTree = "<group>"; };
 		F9DAFFE5222C6C770076C198 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		F9DAFFE7222C6C8E0076C198 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 			children = (
 				F9CE4F3F2230302B0048A96A /* SignInViewController.swift */,
 				F9CE4F4A2230522A0048A96A /* VerificationCodeViewController.swift */,
-				F9CE4F4F22305B6B0048A96A /* SignUpViewController.swift */,
+				F9CE4F4F22305B6B0048A96A /* CompleteProfileViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -590,7 +590,7 @@
 				F9342D8122368A5000FD777E /* UIImage+Additions.swift in Sources */,
 				F9EBF2D122317D9B0008BAA7 /* FirebaseModel.swift in Sources */,
 				F933B5982229DB0F00C1F4CF /* ViewController.swift in Sources */,
-				F9CE4F5022305B6B0048A96A /* SignUpViewController.swift in Sources */,
+				F9CE4F5022305B6B0048A96A /* CompleteProfileViewController.swift in Sources */,
 				F9325339223D412000CE88AB /* NewPostViewController.swift in Sources */,
 				F9518AAB22413A7300A37517 /* CommentsRepository.swift in Sources */,
 				F9EBF2CE223177960008BAA7 /* UserModel.swift in Sources */,
