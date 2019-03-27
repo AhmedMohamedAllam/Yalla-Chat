@@ -36,11 +36,13 @@ class SignInViewController: UIViewController {
             Alert.showMessage(message:"Enter a valid KSA number first!" , theme: .error)
             return
         }
+        let fullPhone = "+966\(phone)"
         
-//        guard ValidationHelper.isValid(phone) else {
-//            view.showMessage(message: "Phone number must be a KSA number!" , theme: .error)
-//            return
-//        }
+        guard ValidationHelper.isValid(phone: fullPhone) else {
+            Alert.showMessage(message: "Phone number must be a KSA number!" , theme: .error)
+            return
+        }
+        
         IndicatorLoading.showLoading(self.view)
 
         user.verifyPhoneNumber(phone) { (verificationId, error) in

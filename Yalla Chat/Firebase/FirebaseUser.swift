@@ -14,7 +14,7 @@ import FirebaseFirestore
 class FirebaseUser {
     static var shared = FirebaseUser()
     
-
+    
     private init() {
     }
     
@@ -70,12 +70,13 @@ class FirebaseUser {
     
     
     //MARK:- Private methods
-    func signOut(viewController: UIViewController) {
+    func signOut(viewController: UIViewController, completion: @escaping () -> Void) {
         let ac = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
             do {
                 try Auth.auth().signOut()
+                completion()
             } catch {
                 print("Error signing out: \(error.localizedDescription)")
             }
@@ -87,7 +88,7 @@ class FirebaseUser {
     private func signIn(credential: PhoneAuthCredential, completionHandler: @escaping (_ authResult: AuthDataResult?,_ error: String?) -> Void){
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
             if let error = error {
-                 completionHandler(nil, error.localizedDescription)
+                completionHandler(nil, error.localizedDescription)
                 return
             }
             
@@ -105,7 +106,7 @@ class FirebaseUser {
         channelReference.addDocument(data: ["joinDate": Date()])
     }
     
-   private func getPhoneCredential(verificationCode code: String) -> PhoneAuthCredential?{
+    private func getPhoneCredential(verificationCode code: String) -> PhoneAuthCredential?{
         guard let verificationId = verificationId() else{
             return nil
         }

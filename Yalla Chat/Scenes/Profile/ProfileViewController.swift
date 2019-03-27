@@ -38,6 +38,7 @@ class ProfileViewController: UIViewController {
     //MARK: public properties need to be set from another view controllers
     var anotherUserProfileId: String?
     
+    @IBOutlet weak var signoutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -52,11 +53,20 @@ class ProfileViewController: UIViewController {
         loadUserData()
     }
     
+    @IBAction func signoutDidPressed(_ sender: Any) {
+        FirebaseUser.shared.signOut(viewController: self){
+            if let SignInVC = R.storyboard.signIn.instantiateInitialViewController(){
+                SignInVC.makeRootAndPresent()
+            }
+        }
+        
+    }
     
     private func updateUIIfMyProfile(){
         let isMyProfile = currentProfileUid == myUid
         sendMessagesView.isHidden = isMyProfile
         editButton.isEnabled = isMyProfile
+        signoutButton.isHidden = !isMyProfile
     }
     
     private func fetchPosts(){

@@ -48,7 +48,9 @@ class TimelineRepository {
     }
     
     private func isMyFriendPost(_ post: Post) -> Bool{
-        return friends.filter{ $0 == post.senderId }.count > 0
+        let isFriendPost = friends.filter{ $0 == post.senderId }.count > 0
+        let isMyPost = post.senderId == FirebaseUser.shared.uid!
+        return  isMyPost || isFriendPost
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {

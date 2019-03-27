@@ -99,6 +99,11 @@ class CompleteProfileViewController: UIViewController {
             Alert.showMessage(message: "Something went wrong, try to login again!", theme: .error)
             return
         }
+//        if let email = userData[Keys.User.email] as? String, !ValidationHelper.isValid(email: email ) {
+//                Alert.showMessage(message: "Enter a valid email!" , theme: .warning)
+//                return
+//        }
+//
         if choosedImage{
             self.uploadPicture()
         }else{
@@ -124,6 +129,7 @@ class CompleteProfileViewController: UIViewController {
     }
     
     private func completeUserData(){
+        
         userData[Keys.User.fullName] = fullNameTextField.text
         userData[Keys.User.gender] = genderTextField.text
         userData[Keys.User.bio] = bioTextField.textOrNil
