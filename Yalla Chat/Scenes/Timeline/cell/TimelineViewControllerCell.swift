@@ -51,8 +51,8 @@ class TimelineViewControllerCell: UITableViewCell {
     func updateCell(post: Post){
         self.post = post
         users.user(with: post.senderId) { [unowned self](user) in
-            self.updateUserName(name: user.fullName)
-            self.updateProfilePic(imageUrl: user.imageUrl)
+            self.updateUserName(name: user?.fullName)
+            self.updateProfilePic(imageUrl: user?.imageUrl)
         }
         if let postImage = post.imageUrl{
             updatePostImage(imageUrl: postImage)
@@ -97,8 +97,8 @@ class TimelineViewControllerCell: UITableViewCell {
         self.postImage.kf.setImage(with: url)
     }
     
-    private func updateUserName(name: String){
-        userName.text = name
+    private func updateUserName(name: String?){
+        userName.text = name ?? "Yall Chat User"
     }
     
     private func updateLikeState(isLiked: Bool){

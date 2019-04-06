@@ -63,6 +63,7 @@ class ChannelsViewController: UITableViewController {
         channelRepository.setupListner()
         setupChannelObservers()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         channelRepository.removeListner()

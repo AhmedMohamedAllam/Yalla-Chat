@@ -33,7 +33,7 @@ class ChannelsTableViewCell: UITableViewCell {
     
     func updateCell(channel: Channel) {
         usersRepository.user(with: channel.destinationUid) {[weak self] (user) in
-            self?.userNameLabel.text = user.fullName
+            self?.userNameLabel.text = user?.fullName ?? "Yalla Chat User"
         }
         updateCellState(hasNewMessage: channel.hasNewMessage)
         lastMessageLabel.text = channel.lastMessage

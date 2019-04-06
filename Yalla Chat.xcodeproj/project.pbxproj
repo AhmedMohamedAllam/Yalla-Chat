@@ -41,6 +41,7 @@
 		F98DCC962235571800071224 /* PreloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98DCC952235571800071224 /* PreloadViewController.swift */; };
 		F98DCC9C22355B7400071224 /* Preload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98DCC9B22355B7400071224 /* Preload.storyboard */; };
 		F9C93D6C224AAC6400FFD595 /* ProfessionalTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C93D6B224AAC6400FFD595 /* ProfessionalTimelineViewController.swift */; };
+		F9C93D70224C1BCC00FFD595 /* Utiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C93D6F224C1BCC00FFD595 /* Utiles.swift */; };
 		F9CC582C223A7C16009490F8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CC582B223A7C16009490F8 /* R.generated.swift */; };
 		F9CE4F402230302B0048A96A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F3F2230302B0048A96A /* SignInViewController.swift */; };
 		F9CE4F432230387E0048A96A /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE4F422230387E0048A96A /* FirebaseUser.swift */; };
@@ -109,6 +110,7 @@
 		F98DCC952235571800071224 /* PreloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadViewController.swift; sourceTree = "<group>"; };
 		F98DCC9B22355B7400071224 /* Preload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preload.storyboard; sourceTree = "<group>"; };
 		F9C93D6B224AAC6400FFD595 /* ProfessionalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalTimelineViewController.swift; sourceTree = "<group>"; };
+		F9C93D6F224C1BCC00FFD595 /* Utiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utiles.swift; sourceTree = "<group>"; };
 		F9CC582B223A7C16009490F8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F9CE4F3F2230302B0048A96A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F9CE4F422230387E0048A96A /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				F9EBF2DC2233F0910008BAA7 /* ActionSheetPicker.swift */,
 				F9EBF2E022340E450008BAA7 /* Alert.swift */,
 				F9E93FE822356DFC00B5A44B /* ImageCache.swift */,
+				F9C93D6F224C1BCC00FFD595 /* Utiles.swift */,
 			);
 			path = Utilitis;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				F932533B223ED24700CE88AB /* Post.swift in Sources */,
 				F9342D7C22368A3B00FD777E /* AppSettings.swift in Sources */,
 				F933B5962229DB0F00C1F4CF /* AppDelegate.swift in Sources */,
+				F9C93D70224C1BCC00FFD595 /* Utiles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

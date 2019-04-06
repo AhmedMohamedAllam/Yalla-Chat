@@ -86,6 +86,7 @@ extension UIImage: MediaItem {
     public var size: CGSize { return  CGSize.zero }
 }
 
+
 extension UIViewController{
     func makeRootAndPresent() {
         guard let window = UIApplication.shared.delegate!.window! else { return }
@@ -96,6 +97,8 @@ extension UIViewController{
             window.rootViewController = self
         }, completion: { _ in })
     }
+    
+    
 }
 
 extension UINavigationController{

@@ -25,12 +25,12 @@ class UsersRepository: FirebaseArrayRepository<UserModel> {
         
     }
     
-    func user(with uid: String, completion: @escaping (_ user: UserModel) -> Void){
+    func user(with uid: String, completion: @escaping (_ user: UserModel?) -> Void){
         ref.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             let dict = snapshot.value as? [String: Any]
             let key = snapshot.key
             let model = UserModel(dictionary: dict, key: key)
-            completion(model!)
+            completion(model)
         }
     }
     

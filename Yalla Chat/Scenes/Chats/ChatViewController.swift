@@ -73,7 +73,7 @@ final class ChatViewController: MessagesViewController {
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
         usersRepository.user(with: channel.destinationUid) { (user) in
-            self.title = user.fullName
+            self.title = user?.fullName ?? "Yalla Chat User"
         }
         senderLastMessageRef = channelRepository.channelDataDocument.collection(FirebaseUser.shared.uid!).document(channel.id)
         receiverLastMessageRef = channelRepository.channelDataDocument.collection(channel.destinationUid).document(channel.id)

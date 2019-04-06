@@ -45,7 +45,7 @@ class SignInViewController: UIViewController {
         
         IndicatorLoading.showLoading(self.view)
 
-        user.verifyPhoneNumber(phone) { (verificationId, error) in
+        user.verifyPhoneNumber(fullPhone) { (verificationId, error) in
             IndicatorLoading.hideLoading(self.view)
             guard error == nil else{
                 Alert.showMessage(message: error!, theme: .error)

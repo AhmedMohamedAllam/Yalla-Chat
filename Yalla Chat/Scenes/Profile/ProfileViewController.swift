@@ -83,6 +83,7 @@ class ProfileViewController: UIViewController {
     private func loadUserData(){
         IndicatorLoading.showLoading(userHeaderView)
         userRepository.user(with: currentProfileUid) {[unowned self] (userModel) in
+            guard let userModel = userModel else { return }
             DispatchQueue.main.async {
                 IndicatorLoading.hideLoading(self.userHeaderView)
                 self.user = userModel

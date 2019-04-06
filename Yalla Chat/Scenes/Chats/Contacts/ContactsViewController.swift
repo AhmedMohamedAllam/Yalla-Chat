@@ -48,8 +48,10 @@ class ContactsViewController: UIViewController {
     
     private func loadFriends(){
         usersRepo.user(with: FirebaseUser.shared.uid!) { (myData) in
+            guard let myData = myData else {return}
             myData.friends.forEach{ [weak self] in
                 self?.usersRepo.user(with: $0, completion: { (myFriend) in
+                    guard let myFriend = myFriend else {return}
                     self?.myFriends.append(myFriend)
                     self?.addFriendToTable(user: myFriend)
                 })

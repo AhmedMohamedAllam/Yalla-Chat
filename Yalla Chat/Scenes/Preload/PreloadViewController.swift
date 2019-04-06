@@ -24,7 +24,7 @@ class PreloadViewController: UIViewController {
         super.viewDidAppear(animated)
         if userFirebase.isSignedIn{
             let homeTabBar = R.storyboard.main.instantiateInitialViewController()!
-            handleProfessionalState(tabBarController: homeTabBar)
+            Utiles.handleProfessionalState(tabBarController: homeTabBar)
             homeTabBar.makeRootAndPresent()
         }else{
             let signIn = R.storyboard.signIn.instantiateInitialViewController()!
@@ -32,20 +32,6 @@ class PreloadViewController: UIViewController {
         }
     }
     
-    func handleProfessionalState(tabBarController: UITabBarController){
-        let currentUserType = UserType(rawValue: userFirebase.userType())
-        var indexToRemove: Int = Int.max
-        if  currentUserType == UserType.personal{
-            indexToRemove = 3
-        }else if currentUserType == UserType.professional{
-            indexToRemove = 0
-        }
-        
-        if indexToRemove < tabBarController.viewControllers?.count ?? 0 {
-            var viewControllers = tabBarController.viewControllers
-            viewControllers?.remove(at: indexToRemove)
-            tabBarController.viewControllers = viewControllers
-        }
-    }
+    
     
 }

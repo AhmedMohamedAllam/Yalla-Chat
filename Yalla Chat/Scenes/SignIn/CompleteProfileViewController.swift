@@ -116,16 +116,9 @@ class CompleteProfileViewController: UIViewController {
         //save user type in userdefaults to check in preloadViewController
         //if it is professional or not
         FirebaseUser.shared.setUserType(userData[Keys.User.type] as! Int)
-        //not edit profile
-        
-        if editUser == nil{
-            let home = R.storyboard.main.instantiateInitialViewController()
-            present(home!, animated: true, completion: nil)
-        }else{
-            Alert.showMessage(message: "Profile updated successfully, restart the App to refelct the changes!", theme: .success)
-            navigationController?.popViewController(animated: true)
-        }
-        
+        let homeTabBar = R.storyboard.main.instantiateInitialViewController()!
+        Utiles.handleProfessionalState(tabBarController: homeTabBar)
+        homeTabBar.makeRootAndPresent()
     }
     
     private func completeUserData(){
