@@ -32,6 +32,7 @@ import Firebase
 import MessageKit
 import FirebaseFirestore
 import MessageInputBar
+import Kingfisher
 
 final class ChatViewController: MessagesViewController {
     
@@ -150,14 +151,18 @@ final class ChatViewController: MessagesViewController {
     private func saveLastMessage(){
         
         if messages.count > 0 {
-            let lastMessageText = messages[messages.count - 1].content
-            let lastMessageDate = messages[messages.count - 1].sentDate
+            let lastMessage = messages[messages.count - 1]
+            let lastMessageText = lastMessage.content
+            let lastMessageDate = lastMessage.sentDate
+            
+            let messageContent = (lastMessage.downloadURL != nil) ? "Sent you an image" : lastMessageText
+            
             senderLastMessageRef.updateData(
-                [Keys.Chat.Channel.lastMessage : lastMessageText,
+                [Keys.Chat.Channel.lastMessage : messageContent,
                  Keys.Chat.Channel.date : lastMessageDate]
             )
             receiverLastMessageRef.updateData(
-                [Keys.Chat.Channel.lastMessage : lastMessageText,
+                [Keys.Chat.Channel.lastMessage : messageContent,
                  Keys.Chat.Channel.date : lastMessageDate]
             )
         }
@@ -218,17 +223,9 @@ final class ChatViewController: MessagesViewController {
         switch change.type {
         case .added:
             if let url = message.downloadURL {
-                downloadImage(at: url) { [weak self] image in
-                    guard let `self` = self else {
-                        return
-                    }
-                    guard let image = image else {
-                        return
-                    }
-                    
-                    message.image = image
-                    self.insertNewMessage(message)
-                }
+                let mediaItem = ImageMediaItem(image: nil, url: url)
+                message.kind = .photo(mediaItem)
+                self.insertNewMessage(message)
             } else {
                 insertNewMessage(message)
             }
@@ -241,7 +238,7 @@ final class ChatViewController: MessagesViewController {
     private func uploadImage(_ image: UIImage, to channel: Channel, completion: @escaping (URL?) -> Void) {
          let channelID = channel.id
         
-        guard let scaledImage = image.scaledToSafeUploadSize, let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+        guard let data = image.jpegData(compressionQuality: 0.4) else {
             completion(nil)
             return
         }
@@ -270,7 +267,7 @@ final class ChatViewController: MessagesViewController {
                 return
             }
             
-            var message = Message(user: self.user, image: image)
+            var message = Message(user: self.user, image: image, url: url)
             message.downloadURL = url
             
             self.save(message)
@@ -307,10 +304,27 @@ extension ChatViewController: MessagesDisplayDelegate {
         return false
     }
     
-//    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-//        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-//        return .bubbleTail(corner, .curved)
-//    }
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
+    }
+    
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
+    {
+        switch message.kind {
+        case .photo(let photoItem):
+            IndicatorLoading.showLoading(imageView)
+            imageView.backgroundColor = nil
+            /// if we don't have a url, that means it's simply a pending message
+            guard let url = photoItem.url else {
+                return
+            }
+            imageView.kf.setImage(with: url)
+            
+        default:
+            break
+        }
+    }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
